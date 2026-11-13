@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@fontsource-variable/inter';
+
+/*
+ * Storefront visual identity: the platform brand, never a gym theme. Same look family as the web
+ * admin (light theme, shadcn/ui neutral tokens, Inter bundled locally, D-061 primary as accent).
+ * Rules:
+ * - `brand` is a fill (with `brand-foreground` text), a focus ring or a non-text accent.
+ *   Never use it as text or link color: it is 3.12:1 on white.
+ * - Body text and links use `foreground`; `muted-foreground` only on `background`.
+ * - Status colors are D-063 `status_on_light` (docs/shared/theme/theme-tokens.json).
+ */
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --primary: #171717;
+  --primary-foreground: #fafafa;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --accent: #f5f5f5;
+  --accent-foreground: #171717;
+  --destructive: #e7000b;
+  --destructive-foreground: #ffffff;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --brand: #ff5a1f;
+  --brand-foreground: #0e0f12;
+  --ring: #ff5a1f;
+  --status-success: #1b7e5a;
+  --status-adjusted: #966708;
+  --status-error: #cc3333;
+  --status-foreground: #ffffff;
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-ring: var(--ring);
+  --color-status-success: var(--status-success);
+  --color-status-adjusted: var(--status-adjusted);
+  --color-status-error: var(--status-error);
+  --color-status-foreground: var(--status-foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+  a {
+    @apply text-foreground underline-offset-4;
+  }
+}

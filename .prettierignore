@@ -1,0 +1,9 @@
+dist
+coverage
+playwright-report
+test-results
+package-lock.json
+src/api/generated
+contracts
+docs/shared
+*.md

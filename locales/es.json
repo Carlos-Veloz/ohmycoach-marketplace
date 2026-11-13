@@ -1,0 +1,21 @@
+{
+  "app": {
+    "name": "OhMyCoach",
+    "marketplace": "Marketplace",
+    "homeLink": "OhMyCoach Marketplace, inicio"
+  },
+  "shell": {
+    "skipToContent": "Saltar al contenido",
+    "footer": "© OhMyCoach"
+  },
+  "home": {
+    "title": "Programas de entrenamiento de los mejores coaches",
+    "description": "Encuentra un programa que se ajuste a tus metas y entrena con él.",
+    "comingSoon": "El catálogo estará disponible muy pronto."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe.",
+    "backHome": "Ir al inicio"
+  }
+}

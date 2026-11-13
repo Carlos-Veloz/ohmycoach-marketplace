@@ -1,0 +1,28 @@
+# Copied from ohmycoach-docs/templates/check-shared-docs.yml.
+# Requires the repository secret DOCS_REPO_TOKEN: a fine-grained token with
+# read-only "Contents" access to the ohmycoach-docs repository.
+name: Check shared docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check-shared-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout the master documentation
+        uses: actions/checkout@v4
+        with:
+          repository: Carlos-Veloz/ohmycoach-docs
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
+          path: _master
+
+      - name: Compare docs/shared with the master
+        run: MASTER_DIR="$GITHUB_WORKSPACE/_master/docs/shared" bash scripts/check-shared-docs.sh

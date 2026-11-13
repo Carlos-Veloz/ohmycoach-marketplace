@@ -1,0 +1,5142 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OhMyCoach API",
+    "description": "Contract for ohmycoach-mobile and ohmycoach-web-admin.",
+    "version": "0.6.0"
+  },
+  "paths": {
+    "/health": {
+      "servers": [
+        {
+          "url": "/"
+        }
+      ],
+      "get": {
+        "tags": [
+          "operations"
+        ],
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "servers": [
+        {
+          "url": "/"
+        }
+      ],
+      "get": {
+        "tags": [
+          "operations"
+        ],
+        "summary": "Health Ready",
+        "operationId": "health_ready_health_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "A dependency is unreachable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Register",
+        "description": "Athlete self-registration. Creates an OPEN_ATHLETE; sign in with /auth/login.\nRate limited per client IP (429 RATE_LIMITED with Retry-After).",
+        "operationId": "register_api_v1_auth_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfile"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Login",
+        "operationId": "login_api_v1_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Refresh",
+        "description": "Rotate the refresh token and re-derive role and tenant.",
+        "operationId": "refresh_api_v1_auth_refresh_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Logout",
+        "description": "Revoke the current session. WEB and STOREFRONT: only that client's cookie is read and\ncleared; the other website's session in the same browser is untouched.",
+        "operationId": "logout_api_v1_auth_logout_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/auth/change-password": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Change Password",
+        "description": "Change the password; clears ``must_change_password`` and signs out the user's other\nsessions (their refresh tokens are revoked; the calling session stays). Allowed while a change\nis required.",
+        "operationId": "change_password_api_v1_auth_change_password_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Get Me",
+        "description": "Profile of the caller. Allowed while ``must_change_password`` is true.",
+        "operationId": "get_me_api_v1_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfile"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/tenants/me/config": {
+      "get": {
+        "tags": [
+          "tenants"
+        ],
+        "summary": "Get My Tenant Config",
+        "description": "White-label configuration of the caller's gym (tenant from the token). 404 without a gym.",
+        "operationId": "get_my_tenant_config_api_v1_tenants_me_config_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantConfig"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/catalog/movements": {
+      "get": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "List Movements",
+        "description": "Movement catalog ordered by key, with ``pr_family`` (D-029, D-038).",
+        "operationId": "list_movements_api_v1_catalog_movements_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 60
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Name or key contains.",
+              "title": "Q"
+            },
+            "description": "Name or key contains."
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Also return deactivated entries.",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Also return deactivated entries."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_MovementOut_"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Create Movement",
+        "operationId": "create_movement_api_v1_catalog_movements_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovementCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovementOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/catalog/movements/{movement_key}": {
+      "patch": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Update Movement",
+        "description": "Rename, change ``pr_family`` or (de)activate. The key is immutable.",
+        "operationId": "update_movement_api_v1_catalog_movements__movement_key__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "movement_key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60,
+              "pattern": "^[A-Z0-9_]+$",
+              "title": "Movement Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovementUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovementOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/catalog/prs": {
+      "get": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "List Prs",
+        "description": "PR catalog (sections STRENGTH and WEIGHTLIFTING), ordered by key (D-047).",
+        "operationId": "list_prs_api_v1_catalog_prs_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Also return deactivated entries.",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Also return deactivated entries."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_PrOut_"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Create Pr",
+        "operationId": "create_pr_api_v1_catalog_prs_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/catalog/prs/{pr_key}": {
+      "patch": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Update Pr",
+        "operationId": "update_pr_api_v1_catalog_prs__pr_key__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "pr_key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60,
+              "pattern": "^[A-Z0-9_]+$",
+              "title": "Pr Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/programs": {
+      "get": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "List Programs",
+        "description": "Gym programs of the caller's tenant: CLASS, ADVANCED and CUSTOM plans.",
+        "operationId": "list_programs_api_v1_programs_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_ProgramOut_"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "Create Program",
+        "description": "Create the CUSTOM plan of one athlete of the gym (one per athlete). MARKETPLACE from M6.",
+        "operationId": "create_program_api_v1_programs_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgramCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgramOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/programs/{program_id}": {
+      "patch": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "Update Program",
+        "description": "Name and description. The ADVANCED audience is set from M3.",
+        "operationId": "update_program_api_v1_programs__program_id__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "program_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Program Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgramUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgramOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/programs/{program_id}/workouts": {
+      "get": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "List Workouts",
+        "description": "Workouts of a date range (inclusive, at most 21 days), drafts included (D-064).",
+        "operationId": "list_workouts_api_v1_programs__program_id__workouts_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "program_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Program Id"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "From"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "To"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkoutList"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/programs/{program_id}/workouts/{date}": {
+      "put": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "Upsert Workout",
+        "description": "Create or replace the workout of a day as DRAFT or PUBLISHED and return the canonical\ndocument. Validated against the workout schema and its extra rules (422\n``WORKOUT_SCHEMA_INVALID``). Increments ``revision`` when it was already published; a\npublished workout cannot go back to DRAFT (400). Never sends notifications.",
+        "operationId": "upsert_workout_api_v1_programs__program_id__workouts__date__put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "program_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Program Id"
+            }
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Day of the workout, YYYY-MM-DD.",
+              "title": "Date"
+            },
+            "description": "Day of the workout, YYYY-MM-DD."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkoutUpsert"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkoutOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/programs/{program_id}/publish-week": {
+      "post": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "Publish Week",
+        "description": "Publish every draft of the Sunday-to-Saturday week that starts on ``week_start`` (D-066).\n``notify_athletes`` requests one push; push is sent from M5.",
+        "operationId": "publish_week_api_v1_programs__program_id__publish_week_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "program_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Program Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishWeekRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishWeekResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/workouts/feed": {
+      "get": {
+        "tags": [
+          "workouts"
+        ],
+        "summary": "Feed",
+        "description": "Published workouts of one date for every program the caller can see. Past dates are\nread-only history; a date after the Saturday of the caller's current week (Sunday to\nSaturday, profile time zone) is rejected with 400 ``WEEK_NOT_VISIBLE`` (D-064).",
+        "operationId": "feed_api_v1_workouts_feed_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "Date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedDay"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/workouts/feed/range": {
+      "get": {
+        "tags": [
+          "workouts"
+        ],
+        "summary": "Feed Range",
+        "description": "Same as the feed for at most 7 days, never after the Saturday of the current week (400\n``WEEK_NOT_VISIBLE``); used to fill the offline cache with the current week.",
+        "operationId": "feed_range_api_v1_workouts_feed_range_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "From"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "To"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedRange"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/workouts/{workout_id}/publish": {
+      "post": {
+        "tags": [
+          "workouts"
+        ],
+        "summary": "Publish Workout",
+        "description": "Publish a draft; already published workouts are returned unchanged. ``notify_athletes``\nrequests the programming push, sent from M5 (D-066).",
+        "operationId": "publish_workout_api_v1_workouts__workout_id__publish_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workout_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Workout Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkoutOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/workouts/{workout_id}/duplicate": {
+      "post": {
+        "tags": [
+          "workouts"
+        ],
+        "summary": "Duplicate Workout",
+        "description": "Copy a day into another date or program of the gym as a DRAFT (D-059). 409\n``WORKOUT_DATE_TAKEN`` when the target day already has a workout.",
+        "operationId": "duplicate_workout_api_v1_workouts__workout_id__duplicate_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workout_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Workout Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DuplicateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkoutOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/workouts/{workout_id}": {
+      "delete": {
+        "tags": [
+          "workouts"
+        ],
+        "summary": "Delete Workout",
+        "description": "Soft delete; athletes' logs are kept (D-043).",
+        "operationId": "delete_workout_api_v1_workouts__workout_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workout_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Workout Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/admin/tenants": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Provision Tenant",
+        "description": "Provision a gym: tenant, owner, box code, CLASS and ADVANCED programs and advanced group.\nThe owner's temporary password is returned **only once**.",
+        "operationId": "provision_tenant_api_v1_admin_tenants_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProvisionTenantRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvisionTenantResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "List Tenants",
+        "operationId": "list_tenants_api_v1_admin_tenants_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_TenantListItem_"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/admin/users/{user_id}/temporary-password": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Issue Temporary Password",
+        "description": "Generate a new temporary password (returned once). The user must change it at the next\nsign-in and every open session is revoked. Replaces email reset until M8.",
+        "operationId": "issue_temporary_password_api_v1_admin_users__user_id__temporary_password_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemporaryPasswordResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChangePasswordRequest": {
+        "properties": {
+          "current_password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Current Password"
+          },
+          "new_password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "New Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "current_password",
+          "new_password"
+        ],
+        "title": "ChangePasswordRequest"
+      },
+      "ClientType": {
+        "type": "string",
+        "enum": [
+          "WEB",
+          "MOBILE",
+          "STOREFRONT"
+        ],
+        "title": "ClientType",
+        "description": "WEB is the web admin, STOREFRONT the Marketplace website (Q-045, D-069)."
+      },
+      "DuplicateRequest": {
+        "properties": {
+          "target_program_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target Program Id"
+          },
+          "target_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Target Date"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target_program_id",
+          "target_date"
+        ],
+        "title": "DuplicateRequest"
+      },
+      "ErrorBody": {
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ErrorCode"
+              },
+              {
+                "description": "Generic code for any other 4xx status, for example HTTP_406.",
+                "pattern": "^HTTP_4[0-9]{2}$",
+                "type": "string"
+              }
+            ],
+            "title": "Code"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "details": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            },
+            "title": "Details",
+            "type": "array"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorBody",
+        "type": "object"
+      },
+      "ErrorCode": {
+        "enum": [
+          "VALIDATION_ERROR",
+          "UNAUTHENTICATED",
+          "FORBIDDEN",
+          "NOT_FOUND",
+          "METHOD_NOT_ALLOWED",
+          "CONFLICT",
+          "PAYLOAD_TOO_LARGE",
+          "UNSUPPORTED_MEDIA_TYPE",
+          "REQUEST_VALIDATION_FAILED",
+          "WORKOUT_SCHEMA_INVALID",
+          "RATE_LIMITED",
+          "INTERNAL_ERROR",
+          "SERVICE_UNAVAILABLE",
+          "INVALID_CREDENTIALS",
+          "INVALID_REFRESH_TOKEN",
+          "INVALID_CURRENT_PASSWORD",
+          "CODE_RESERVED",
+          "PASSWORD_CHANGE_REQUIRED",
+          "TENANT_INACTIVE",
+          "ORIGIN_NOT_ALLOWED",
+          "EMAIL_ALREADY_REGISTERED",
+          "CODE_ALREADY_TAKEN",
+          "CATALOG_KEY_TAKEN",
+          "CUSTOM_PROGRAM_EXISTS",
+          "WORKOUT_DATE_TAKEN",
+          "WEEK_NOT_VISIBLE",
+          "ALREADY_SUBSCRIBED",
+          "QUOTE_CHANGED",
+          "IDEMPOTENCY_KEY_REUSED"
+        ],
+        "title": "ErrorCode",
+        "type": "string"
+      },
+      "ErrorDetail": {
+        "properties": {
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "reason"
+        ],
+        "title": "ErrorDetail",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "FeedDay": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/FeedItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "items"
+        ],
+        "title": "FeedDay"
+      },
+      "FeedItem": {
+        "properties": {
+          "program": {
+            "$ref": "#/components/schemas/FeedProgram"
+          },
+          "workout": {
+            "$ref": "#/components/schemas/FeedWorkout"
+          },
+          "my_log": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FeedLog"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Always null until M4."
+          },
+          "my_scores": {
+            "items": {
+              "$ref": "#/components/schemas/FeedScore"
+            },
+            "type": "array",
+            "title": "My Scores",
+            "description": "Always empty until M4."
+          }
+        },
+        "type": "object",
+        "required": [
+          "program",
+          "workout",
+          "my_log",
+          "my_scores"
+        ],
+        "title": "FeedItem"
+      },
+      "FeedLog": {
+        "properties": {
+          "log_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Log Id"
+          },
+          "completed_block_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Completed Block Ids"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "log_id",
+          "completed_block_ids",
+          "finished_at"
+        ],
+        "title": "FeedLog",
+        "description": "The caller's workout log (M4)."
+      },
+      "FeedProgram": {
+        "properties": {
+          "program_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Program Id"
+          },
+          "program_type": {
+            "$ref": "#/components/schemas/ProgramType"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "has_session_flow": {
+            "type": "boolean",
+            "title": "Has Session Flow",
+            "description": "Checkboxes and Finish workout (false for CLASS)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "program_id",
+          "program_type",
+          "name",
+          "has_session_flow"
+        ],
+        "title": "FeedProgram"
+      },
+      "FeedRange": {
+        "properties": {
+          "from": {
+            "type": "string",
+            "format": "date",
+            "title": "From"
+          },
+          "to": {
+            "type": "string",
+            "format": "date",
+            "title": "To"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/FeedDay"
+            },
+            "type": "array",
+            "title": "Days"
+          }
+        },
+        "type": "object",
+        "required": [
+          "from",
+          "to",
+          "days"
+        ],
+        "title": "FeedRange"
+      },
+      "FeedScore": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "time_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "version"
+        ],
+        "title": "FeedScore",
+        "description": "One of the caller's scores (M4)."
+      },
+      "FeedWorkout": {
+        "properties": {
+          "workout_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Workout Id"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "document": {
+            "$ref": "#/components/schemas/WorkoutDocument"
+          }
+        },
+        "type": "object",
+        "required": [
+          "workout_id",
+          "revision",
+          "document"
+        ],
+        "title": "FeedWorkout"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok",
+            "title": "Status",
+            "default": "ok"
+          }
+        },
+        "type": "object",
+        "title": "HealthResponse"
+      },
+      "Locale": {
+        "type": "string",
+        "enum": [
+          "en",
+          "es"
+        ],
+        "title": "Locale"
+      },
+      "LoginRequest": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Password"
+          },
+          "client": {
+            "$ref": "#/components/schemas/ClientType"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password",
+          "client"
+        ],
+        "title": "LoginRequest"
+      },
+      "LogoutRequest": {
+        "properties": {
+          "client": {
+            "$ref": "#/components/schemas/ClientType"
+          },
+          "refresh_token": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refresh Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "client"
+        ],
+        "title": "LogoutRequest"
+      },
+      "MovementCreate": {
+        "properties": {
+          "movement_key": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1,
+            "pattern": "^[A-Z0-9_]+$",
+            "title": "Movement Key"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "pr_family": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 60,
+                "minLength": 1,
+                "pattern": "^[A-Z0-9_]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pr Family"
+          }
+        },
+        "type": "object",
+        "required": [
+          "movement_key",
+          "name"
+        ],
+        "title": "MovementCreate"
+      },
+      "MovementOut": {
+        "properties": {
+          "movement_key": {
+            "type": "string",
+            "title": "Movement Key"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "pr_family": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pr Family"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "movement_key",
+          "name",
+          "pr_family",
+          "is_active"
+        ],
+        "title": "MovementOut"
+      },
+      "MovementUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "pr_family": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 60,
+                "minLength": 1,
+                "pattern": "^[A-Z0-9_]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pr Family"
+          },
+          "is_active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "title": "MovementUpdate",
+        "description": "Only the fields sent are changed; ``pr_family: null`` clears it. The key is immutable."
+      },
+      "OwnerSummary": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "full_name": {
+            "type": "string",
+            "title": "Full Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "email",
+          "full_name"
+        ],
+        "title": "OwnerSummary"
+      },
+      "Page_MovementOut_": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/MovementOut"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "Page[MovementOut]"
+      },
+      "Page_PrOut_": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PrOut"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "Page[PrOut]"
+      },
+      "Page_ProgramOut_": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ProgramOut"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "Page[ProgramOut]"
+      },
+      "Page_TenantListItem_": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TenantListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "Page[TenantListItem]"
+      },
+      "PrCreate": {
+        "properties": {
+          "pr_key": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1,
+            "pattern": "^[A-Z0-9_]+$",
+            "title": "Pr Key"
+          },
+          "section": {
+            "$ref": "#/components/schemas/PrSection"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pr_key",
+          "section",
+          "name"
+        ],
+        "title": "PrCreate"
+      },
+      "PrOut": {
+        "properties": {
+          "pr_key": {
+            "type": "string",
+            "title": "Pr Key"
+          },
+          "section": {
+            "$ref": "#/components/schemas/PrSection"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pr_key",
+          "section",
+          "name",
+          "is_active"
+        ],
+        "title": "PrOut"
+      },
+      "PrSection": {
+        "type": "string",
+        "enum": [
+          "STRENGTH",
+          "WEIGHTLIFTING"
+        ],
+        "title": "PrSection"
+      },
+      "PrUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "section": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PrSection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "is_active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "title": "PrUpdate"
+      },
+      "ProgramCreate": {
+        "properties": {
+          "program_type": {
+            "type": "string",
+            "const": "CUSTOM",
+            "title": "Program Type"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "assigned_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Assigned User Id"
+          },
+          "assigned_coach_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assigned Coach Id",
+            "description": "An owner or coach of the gym; defaults to the caller (D-067)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "program_type",
+          "name",
+          "assigned_user_id"
+        ],
+        "title": "ProgramCreate",
+        "description": "M2 creates CUSTOM plans only; MARKETPLACE programs arrive in M6. CLASS and ADVANCED exist\nfrom tenant provisioning."
+      },
+      "ProgramOut": {
+        "properties": {
+          "program_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Program Id"
+          },
+          "program_type": {
+            "$ref": "#/components/schemas/ProgramType"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "audience_group_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audience Group Id"
+          },
+          "assigned_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assigned User Id"
+          },
+          "assigned_coach_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assigned Coach Id",
+            "description": "CUSTOM only: the staff member in charge of the plan (D-067)."
+          },
+          "created_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Created By"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "program_id",
+          "program_type",
+          "name",
+          "description",
+          "audience_group_id",
+          "assigned_user_id",
+          "assigned_coach_id",
+          "created_by",
+          "created_at"
+        ],
+        "title": "ProgramOut"
+      },
+      "ProgramType": {
+        "type": "string",
+        "enum": [
+          "CLASS",
+          "ADVANCED",
+          "CUSTOM",
+          "MARKETPLACE"
+        ],
+        "title": "ProgramType"
+      },
+      "ProgramUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "assigned_coach_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assigned Coach Id"
+          }
+        },
+        "type": "object",
+        "title": "ProgramUpdate",
+        "description": "Only the fields sent are changed; ``description: null`` clears it. ``assigned_coach_id``\n(CUSTOM only, never null) can be changed by the owner or the current assigned coach."
+      },
+      "ProvisionOwner": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "full_name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Full Name"
+          },
+          "locale": {
+            "$ref": "#/components/schemas/Locale"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "full_name",
+          "locale"
+        ],
+        "title": "ProvisionOwner"
+      },
+      "ProvisionTenantRequest": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone"
+          },
+          "box_code": {
+            "type": "string",
+            "title": "Box Code"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/ProvisionOwner"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "timezone",
+          "box_code",
+          "owner"
+        ],
+        "title": "ProvisionTenantRequest"
+      },
+      "ProvisionTenantResponse": {
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Tenant Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone"
+          },
+          "box_code": {
+            "type": "string",
+            "title": "Box Code"
+          },
+          "class_program_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Class Program Id"
+          },
+          "advanced_program_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Advanced Program Id"
+          },
+          "advanced_group_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Advanced Group Id"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/OwnerSummary"
+          },
+          "temporary_password": {
+            "type": "string",
+            "title": "Temporary Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tenant_id",
+          "name",
+          "timezone",
+          "box_code",
+          "class_program_id",
+          "advanced_program_id",
+          "advanced_group_id",
+          "owner",
+          "temporary_password"
+        ],
+        "title": "ProvisionTenantResponse"
+      },
+      "PublishRequest": {
+        "properties": {
+          "notify_athletes": {
+            "type": "boolean",
+            "title": "Notify Athletes",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "PublishRequest",
+        "description": "``notify_athletes`` requests the programming push; it is sent from M5 (D-066)."
+      },
+      "PublishWeekRequest": {
+        "properties": {
+          "week_start": {
+            "type": "string",
+            "format": "date",
+            "title": "Week Start",
+            "description": "Sunday that starts the week (Sunday to Saturday)."
+          },
+          "notify_athletes": {
+            "type": "boolean",
+            "title": "Notify Athletes",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "week_start"
+        ],
+        "title": "PublishWeekRequest"
+      },
+      "PublishWeekResponse": {
+        "properties": {
+          "week_start": {
+            "type": "string",
+            "format": "date",
+            "title": "Week Start"
+          },
+          "week_end": {
+            "type": "string",
+            "format": "date",
+            "title": "Week End"
+          },
+          "published": {
+            "items": {
+              "$ref": "#/components/schemas/WorkoutOut"
+            },
+            "type": "array",
+            "title": "Published",
+            "description": "Drafts published by this request."
+          }
+        },
+        "type": "object",
+        "required": [
+          "week_start",
+          "week_end",
+          "published"
+        ],
+        "title": "PublishWeekResponse"
+      },
+      "ReadinessChecks": {
+        "properties": {
+          "database": {
+            "type": "string",
+            "const": "ok",
+            "title": "Database",
+            "default": "ok"
+          }
+        },
+        "type": "object",
+        "title": "ReadinessChecks"
+      },
+      "ReadinessResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok",
+            "title": "Status",
+            "default": "ok"
+          },
+          "checks": {
+            "$ref": "#/components/schemas/ReadinessChecks",
+            "default": {
+              "database": "ok"
+            }
+          }
+        },
+        "type": "object",
+        "title": "ReadinessResponse"
+      },
+      "RefreshRequest": {
+        "properties": {
+          "client": {
+            "$ref": "#/components/schemas/ClientType"
+          },
+          "refresh_token": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refresh Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "client"
+        ],
+        "title": "RefreshRequest",
+        "description": "MOBILE sends ``refresh_token`` in the body; WEB and STOREFRONT send only ``client`` and\ntheir own cookie."
+      },
+      "RegisterRequest": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Password"
+          },
+          "full_name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Full Name"
+          },
+          "weight_unit_preference": {
+            "$ref": "#/components/schemas/WeightUnit"
+          },
+          "rx_standard": {
+            "$ref": "#/components/schemas/RxStandard"
+          },
+          "locale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "time_zone": {
+            "type": "string",
+            "title": "Time Zone"
+          },
+          "privacy_consent": {
+            "type": "boolean",
+            "const": true,
+            "title": "Privacy Consent",
+            "description": "Must be true: explicit privacy consent."
+          },
+          "privacy_notice_version": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Privacy Notice Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password",
+          "full_name",
+          "weight_unit_preference",
+          "rx_standard",
+          "locale",
+          "time_zone",
+          "privacy_consent",
+          "privacy_notice_version"
+        ],
+        "title": "RegisterRequest"
+      },
+      "Role": {
+        "type": "string",
+        "enum": [
+          "NORMAL_USER",
+          "PRO_ATHLETE",
+          "OPEN_ATHLETE",
+          "COACH",
+          "SPECIALIST",
+          "OWNER",
+          "SUPER_ADMIN"
+        ],
+        "title": "Role"
+      },
+      "RxStandard": {
+        "type": "string",
+        "enum": [
+          "MEN",
+          "WOMEN"
+        ],
+        "title": "RxStandard"
+      },
+      "TemporaryPasswordResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "temporary_password": {
+            "type": "string",
+            "title": "Temporary Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "temporary_password"
+        ],
+        "title": "TemporaryPasswordResponse"
+      },
+      "TenantConfig": {
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Tenant Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "logo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logo Url"
+          },
+          "primary_color": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Primary Color"
+          },
+          "accent_color": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accent Color"
+          },
+          "background_color": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Background Color"
+          },
+          "text_color": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text Color"
+          },
+          "font_family": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Font Family"
+          },
+          "marketplace_visible": {
+            "type": "boolean",
+            "title": "Marketplace Visible"
+          },
+          "payment_mode": {
+            "type": "string",
+            "const": "TEST",
+            "title": "Payment Mode",
+            "default": "TEST"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tenant_id",
+          "name",
+          "logo_url",
+          "primary_color",
+          "accent_color",
+          "background_color",
+          "text_color",
+          "font_family",
+          "marketplace_visible"
+        ],
+        "title": "TenantConfig",
+        "description": "White-label configuration of the caller's tenant (GET /tenants/me/config)."
+      },
+      "TenantListItem": {
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Tenant Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone"
+          },
+          "box_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Box Code"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "owner": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OwnerSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "tenant_id",
+          "name",
+          "timezone",
+          "box_code",
+          "is_active",
+          "created_at",
+          "owner"
+        ],
+        "title": "TenantListItem"
+      },
+      "TokenResponse": {
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token"
+          },
+          "token_type": {
+            "type": "string",
+            "const": "bearer",
+            "title": "Token Type",
+            "default": "bearer"
+          },
+          "expires_in": {
+            "type": "integer",
+            "title": "Expires In",
+            "description": "Access token lifetime in seconds."
+          },
+          "refresh_token": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refresh Token",
+            "description": "Only for MOBILE clients. WEB clients receive it in the httpOnly cookie `ohmycoach_refresh`, STOREFRONT clients in `ohmycoach_market_refresh`, and the field is absent."
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserProfile"
+          }
+        },
+        "type": "object",
+        "required": [
+          "access_token",
+          "expires_in",
+          "user"
+        ],
+        "title": "TokenResponse"
+      },
+      "UserProfile": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "full_name": {
+            "type": "string",
+            "title": "Full Name"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "tenant_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tenant Id"
+          },
+          "is_publisher": {
+            "type": "boolean",
+            "title": "Is Publisher"
+          },
+          "weight_unit_preference": {
+            "$ref": "#/components/schemas/WeightUnit"
+          },
+          "rx_standard": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RxStandard"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "locale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "time_zone": {
+            "type": "string",
+            "title": "Time Zone"
+          },
+          "hidden_from_leaderboards": {
+            "type": "boolean",
+            "title": "Hidden From Leaderboards"
+          },
+          "must_change_password": {
+            "type": "boolean",
+            "title": "Must Change Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "email",
+          "full_name",
+          "display_name",
+          "role",
+          "tenant_id",
+          "is_publisher",
+          "weight_unit_preference",
+          "rx_standard",
+          "locale",
+          "time_zone",
+          "hidden_from_leaderboards",
+          "must_change_password"
+        ],
+        "title": "UserProfile"
+      },
+      "WeightUnit": {
+        "type": "string",
+        "enum": [
+          "KG",
+          "LB"
+        ],
+        "title": "WeightUnit"
+      },
+      "WorkoutBlock": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "block_id",
+          "block_order",
+          "block_type",
+          "title",
+          "parts"
+        ],
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "block_order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "block_type": {
+            "enum": [
+              "WARM_UP",
+              "STRENGTH",
+              "STRENGTH_COMPLEX",
+              "INTERVALS",
+              "ACCESSORY",
+              "METCON",
+              "SKILL",
+              "COOL_DOWN",
+              "CUSTOM"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "optional": {
+            "type": "boolean"
+          },
+          "scored": {
+            "type": "boolean"
+          },
+          "coaching": {
+            "$ref": "#/components/schemas/WorkoutCoaching"
+          },
+          "media_links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkoutMediaLink"
+            }
+          },
+          "parts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutPart"
+            }
+          }
+        },
+        "if": {
+          "properties": {
+            "scored": {
+              "const": true
+            }
+          },
+          "required": [
+            "scored"
+          ]
+        },
+        "then": {
+          "properties": {
+            "block_type": {
+              "const": "METCON"
+            },
+            "parts": {
+              "maxItems": 1,
+              "items": {
+                "properties": {
+                  "structure": {
+                    "const": "WOD"
+                  },
+                  "wod_format": {
+                    "enum": [
+                      "FOR_TIME",
+                      "AMRAP"
+                    ]
+                  }
+                },
+                "required": [
+                  "structure",
+                  "wod_format"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "WorkoutCoaching": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "intention": {
+            "type": "string"
+          },
+          "stimulus": {
+            "type": "string"
+          },
+          "form_cues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "strategy": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "title",
+                "lines"
+              ],
+              "properties": {
+                "movement_key": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "lines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "substitutions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "for",
+                "options"
+              ],
+              "properties": {
+                "for": {
+                  "type": "string"
+                },
+                "options": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "intensity": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "rpe": {
+                "$ref": "#/components/schemas/WorkoutNumberOrRange"
+              },
+              "label": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "WorkoutCommonPart": {
+        "type": "object",
+        "required": [
+          "part_id",
+          "structure"
+        ],
+        "properties": {
+          "part_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 3
+          },
+          "title": {
+            "type": "string"
+          },
+          "optional": {
+            "type": "boolean"
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "media_links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkoutMediaLink"
+            }
+          },
+          "notes": {
+            "type": "string"
+          },
+          "structure": {
+            "enum": [
+              "TEXT",
+              "SETS",
+              "ROUNDS",
+              "INTERVALS",
+              "WORK_REST",
+              "LADDER",
+              "WOD"
+            ]
+          }
+        }
+      },
+      "WorkoutDocument": {
+        "title": "Workout",
+        "description": "One training day of a program as an ordered list of blocks. A block is one numbered section of the coach's programming and contains one or more parts. Single source of truth for backend, web admin and mobile. See docs/shared/04-workout-block-model.md.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "workout_id",
+          "program_id",
+          "date",
+          "status",
+          "metadata",
+          "blocks"
+        ],
+        "properties": {
+          "workout_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "program_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/WorkoutMetadata"
+          },
+          "blocks": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutBlock"
+            }
+          }
+        }
+      },
+      "WorkoutGendered": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "men",
+          "women"
+        ],
+        "properties": {
+          "men": {
+            "$ref": "#/components/schemas/WorkoutQuantity"
+          },
+          "women": {
+            "$ref": "#/components/schemas/WorkoutQuantity"
+          }
+        }
+      },
+      "WorkoutIntRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "min",
+          "max"
+        ],
+        "properties": {
+          "min": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "max": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      },
+      "WorkoutInterval": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "applies_to",
+          "movements"
+        ],
+        "properties": {
+          "applies_to": {
+            "$ref": "#/components/schemas/WorkoutIntervalSelector"
+          },
+          "movements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutSequenceItem"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "WorkoutIntervalSelector": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "pattern"
+            ],
+            "properties": {
+              "pattern": {
+                "enum": [
+                  "ALL",
+                  "ODD",
+                  "EVEN"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "from",
+              "to"
+            ],
+            "properties": {
+              "from": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "to": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        ]
+      },
+      "WorkoutIntervalsPart": {
+        "properties": {
+          "structure": {
+            "const": "INTERVALS"
+          },
+          "interval_seconds": {
+            "type": "integer",
+            "minimum": 5
+          },
+          "total_intervals": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "intervals": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutInterval"
+            }
+          },
+          "percentage_reference": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]+$"
+          }
+        },
+        "required": [
+          "structure",
+          "interval_seconds",
+          "total_intervals",
+          "intervals"
+        ]
+      },
+      "WorkoutLadderPart": {
+        "properties": {
+          "structure": {
+            "const": "LADDER"
+          },
+          "rep_scheme": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "repeats": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "movement": {
+            "$ref": "#/components/schemas/WorkoutMovementLine"
+          },
+          "rest": {
+            "$ref": "#/components/schemas/WorkoutRest"
+          }
+        },
+        "required": [
+          "structure",
+          "rep_scheme",
+          "movement"
+        ]
+      },
+      "WorkoutList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/WorkoutOut"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "WorkoutList"
+      },
+      "WorkoutLoad": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "percentage": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1.5
+          },
+          "percentage_min": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1.5
+          },
+          "percentage_max": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1.5
+          },
+          "rpe": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 10
+              },
+              {
+                "$ref": "#/components/schemas/WorkoutRange"
+              }
+            ]
+          },
+          "weight": {
+            "$ref": "#/components/schemas/WorkoutQuantityOrGendered"
+          },
+          "athlete_choice": {
+            "type": "boolean"
+          },
+          "empty_bar": {
+            "type": "boolean"
+          }
+        },
+        "dependentRequired": {
+          "percentage_min": [
+            "percentage_max"
+          ],
+          "percentage_max": [
+            "percentage_min"
+          ]
+        },
+        "not": {
+          "required": [
+            "percentage",
+            "percentage_min"
+          ]
+        }
+      },
+      "WorkoutMediaLink": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "label",
+          "url"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "YOUTUBE",
+              "GOWOD",
+              "OTHER"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "WorkoutMetadata": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "estimated_duration_minutes"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "track_label": {
+            "type": "string"
+          },
+          "estimated_duration_minutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "intention": {
+            "type": "string"
+          },
+          "closing_note": {
+            "type": "string"
+          }
+        }
+      },
+      "WorkoutMovementLine": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "movement_key": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]+$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reps": {
+            "$ref": "#/components/schemas/WorkoutReps"
+          },
+          "reps_by_round": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "per_side": {
+            "type": "boolean"
+          },
+          "duration_seconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "distance": {
+            "$ref": "#/components/schemas/WorkoutQuantityOrGendered"
+          },
+          "calories": {
+            "$ref": "#/components/schemas/WorkoutQuantityOrGendered"
+          },
+          "height": {
+            "$ref": "#/components/schemas/WorkoutQuantityOrGendered"
+          },
+          "load": {
+            "$ref": "#/components/schemas/WorkoutLoad"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "media_links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkoutMediaLink"
+            }
+          }
+        },
+        "not": {
+          "required": [
+            "reps",
+            "reps_by_round"
+          ]
+        }
+      },
+      "WorkoutNumberOrRange": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "$ref": "#/components/schemas/WorkoutRange"
+          }
+        ]
+      },
+      "WorkoutOut": {
+        "properties": {
+          "workout_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Workout Id"
+          },
+          "program_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Program Id"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "status": {
+            "$ref": "#/components/schemas/WorkoutStatus"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "track_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Track Label"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "document": {
+            "$ref": "#/components/schemas/WorkoutDocument"
+          }
+        },
+        "type": "object",
+        "required": [
+          "workout_id",
+          "program_id",
+          "date",
+          "status",
+          "revision",
+          "title",
+          "track_label",
+          "published_at",
+          "created_at",
+          "updated_at",
+          "document"
+        ],
+        "title": "WorkoutOut"
+      },
+      "WorkoutPart": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/WorkoutCommonPart"
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/WorkoutTextPart"
+              },
+              {
+                "$ref": "#/components/schemas/WorkoutSetsPart"
+              },
+              {
+                "$ref": "#/components/schemas/WorkoutRoundsPart"
+              },
+              {
+                "$ref": "#/components/schemas/WorkoutIntervalsPart"
+              },
+              {
+                "$ref": "#/components/schemas/WorkoutWorkRestPart"
+              },
+              {
+                "$ref": "#/components/schemas/WorkoutLadderPart"
+              },
+              {
+                "$ref": "#/components/schemas/WorkoutWodPart"
+              }
+            ]
+          }
+        ],
+        "unevaluatedProperties": false
+      },
+      "WorkoutQuantity": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "value",
+          "unit"
+        ],
+        "properties": {
+          "value": {
+            "type": "number",
+            "minimum": 0
+          },
+          "unit": {
+            "$ref": "#/components/schemas/WorkoutUnit"
+          }
+        }
+      },
+      "WorkoutQuantityOrGendered": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/WorkoutQuantity"
+          },
+          {
+            "$ref": "#/components/schemas/WorkoutGendered"
+          }
+        ]
+      },
+      "WorkoutRampUpStep": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "load"
+        ],
+        "properties": {
+          "load": {
+            "$ref": "#/components/schemas/WorkoutLoad"
+          },
+          "reps": {
+            "$ref": "#/components/schemas/WorkoutReps"
+          },
+          "movements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkoutMovementLine"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "WorkoutRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "min",
+          "max"
+        ],
+        "properties": {
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        }
+      },
+      "WorkoutReps": {
+        "oneOf": [
+          {
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "$ref": "#/components/schemas/WorkoutIntRange"
+          },
+          {
+            "const": "MAX"
+          }
+        ]
+      },
+      "WorkoutRest": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "min_seconds": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "max_seconds": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "as_needed": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "WorkoutRestLine": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rest"
+        ],
+        "properties": {
+          "rest": {
+            "$ref": "#/components/schemas/WorkoutRest"
+          }
+        }
+      },
+      "WorkoutRoundsPart": {
+        "properties": {
+          "structure": {
+            "const": "ROUNDS"
+          },
+          "rounds": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "$ref": "#/components/schemas/WorkoutIntRange"
+              }
+            ]
+          },
+          "movements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutSequenceItem"
+            }
+          },
+          "rest_between_movements": {
+            "$ref": "#/components/schemas/WorkoutRest"
+          },
+          "rest_between_rounds": {
+            "$ref": "#/components/schemas/WorkoutRest"
+          }
+        },
+        "required": [
+          "structure",
+          "rounds",
+          "movements"
+        ]
+      },
+      "WorkoutSequenceItem": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/WorkoutMovementLine"
+          },
+          {
+            "$ref": "#/components/schemas/WorkoutRestLine"
+          }
+        ]
+      },
+      "WorkoutSetGroup": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sets",
+          "reps"
+        ],
+        "properties": {
+          "sets": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "$ref": "#/components/schemas/WorkoutIntRange"
+              }
+            ]
+          },
+          "reps": {
+            "$ref": "#/components/schemas/WorkoutReps"
+          },
+          "load": {
+            "$ref": "#/components/schemas/WorkoutLoad"
+          },
+          "rest": {
+            "$ref": "#/components/schemas/WorkoutRest"
+          },
+          "time_cap_seconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "WorkoutSetsPart": {
+        "properties": {
+          "structure": {
+            "const": "SETS"
+          },
+          "movements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutMovementLine"
+            }
+          },
+          "sets": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutSetGroup"
+            }
+          },
+          "ramp_up": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkoutRampUpStep"
+            }
+          },
+          "percentage_reference": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]+$"
+          },
+          "rest": {
+            "$ref": "#/components/schemas/WorkoutRest"
+          }
+        },
+        "required": [
+          "structure",
+          "movements",
+          "sets"
+        ]
+      },
+      "WorkoutStatus": {
+        "type": "string",
+        "enum": [
+          "DRAFT",
+          "PUBLISHED"
+        ],
+        "title": "WorkoutStatus"
+      },
+      "WorkoutTargets": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "target_time_seconds": {
+            "$ref": "#/components/schemas/WorkoutNumberOrRange"
+          },
+          "target_rounds": {
+            "type": "number"
+          },
+          "minimum_reference_rounds": {
+            "type": "number"
+          },
+          "per_interval_target_seconds": {
+            "type": "number"
+          },
+          "rpe": {
+            "$ref": "#/components/schemas/WorkoutNumberOrRange"
+          },
+          "intensity_percent": {
+            "$ref": "#/components/schemas/WorkoutNumberOrRange"
+          }
+        }
+      },
+      "WorkoutTextPart": {
+        "properties": {
+          "structure": {
+            "const": "TEXT"
+          }
+        },
+        "required": [
+          "structure",
+          "lines"
+        ]
+      },
+      "WorkoutUnit": {
+        "enum": [
+          "LB",
+          "KG",
+          "M",
+          "KM",
+          "FT",
+          "IN",
+          "CM",
+          "CAL"
+        ]
+      },
+      "WorkoutUpsert": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/WorkoutStatus"
+          },
+          "document": {
+            "$ref": "#/components/schemas/WorkoutDocument"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "document"
+        ],
+        "title": "WorkoutUpsert",
+        "description": "``workout_id``, ``program_id``, ``date`` and ``status`` inside the document are overwritten\nby the server (the path, the stored id and ``status`` of this body) before validation."
+      },
+      "WorkoutWodBody": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rounds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "interval_seconds": {
+            "type": "integer",
+            "minimum": 5
+          },
+          "intervals": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutInterval"
+            }
+          },
+          "movements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutSequenceItem"
+            }
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "movements"
+            ]
+          },
+          {
+            "required": [
+              "intervals"
+            ]
+          }
+        ]
+      },
+      "WorkoutWodPart": {
+        "properties": {
+          "structure": {
+            "const": "WOD"
+          },
+          "wod_format": {
+            "enum": [
+              "FOR_TIME",
+              "AMRAP",
+              "INTERVALS"
+            ]
+          },
+          "time_cap_seconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "duration_seconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "interval_time_cap_seconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "targets": {
+            "$ref": "#/components/schemas/WorkoutTargets"
+          },
+          "versions": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "RX"
+            ],
+            "properties": {
+              "RX": {
+                "$ref": "#/components/schemas/WorkoutWodBody"
+              },
+              "SCALED": {
+                "$ref": "#/components/schemas/WorkoutWodBody"
+              }
+            }
+          }
+        },
+        "required": [
+          "structure",
+          "wod_format",
+          "versions"
+        ],
+        "if": {
+          "properties": {
+            "wod_format": {
+              "const": "AMRAP"
+            }
+          },
+          "required": [
+            "wod_format"
+          ]
+        },
+        "then": {
+          "required": [
+            "duration_seconds"
+          ]
+        }
+      },
+      "WorkoutWorkRestPart": {
+        "properties": {
+          "structure": {
+            "const": "WORK_REST"
+          },
+          "rounds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "work_seconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "rest_seconds": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "movements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WorkoutMovementLine"
+            }
+          }
+        },
+        "required": [
+          "structure",
+          "rounds",
+          "work_seconds",
+          "rest_seconds",
+          "movements"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "description": "Access token from /auth/login.",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ]
+}
