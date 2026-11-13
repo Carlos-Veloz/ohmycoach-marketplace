@@ -1,0 +1,32 @@
+# Dependencies and build output
+node_modules
+dist
+dist-ssr
+*.local
+
+# Environment (only .env.example is committed)
+.env
+.env.*
+!.env.example
+
+# Tests
+coverage
+playwright-report
+test-results
+blob-report
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editors and OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.sw?
+
+# Python
+__pycache__
+.venv
+

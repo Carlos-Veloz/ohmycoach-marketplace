@@ -1,0 +1,53 @@
+# Staging deployment of the static build to S3 + CloudFront at market.<domain>.
+# Disabled until the infrastructure exists: it runs only when the repository variable
+# DEPLOY_ENABLED is "true".
+# Required repository variables: AWS_DEPLOY_ROLE_ARN, STAGING_BUCKET, STAGING_DISTRIBUTION_ID,
+# STAGING_API_BASE_URL. No secrets: AWS access uses GitHub OIDC.
+name: Deploy staging
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    environment: staging
+    env:
+      VITE_API_BASE_URL: ${{ vars.STAGING_API_BASE_URL }}
+      VITE_APP_ENV: staging
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run lint && npm test
+      - run: npm run build
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-1
+      - name: Upload hashed assets (long cache)
+        run: >
+          aws s3 sync dist/assets "s3://${{ vars.STAGING_BUCKET }}/assets"
+          --delete --cache-control "public, max-age=31536000, immutable"
+      - name: Upload the remaining files (no cache)
+        run: >
+          aws s3 sync dist "s3://${{ vars.STAGING_BUCKET }}"
+          --delete --exclude "assets/*" --cache-control "no-cache"
+      - name: Invalidate index.html
+        run: >
+          aws cloudfront create-invalidation
+          --distribution-id "${{ vars.STAGING_DISTRIBUTION_ID }}" --paths "/index.html"
