@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "default_theme": {
+    "name": "Fitness Dark Theme",
+    "colors": {
+      "background": "#0E0F12",
+      "surface": "#181A1F",
+      "primary": "#FF5A1F",
+      "on_primary": "#0E0F12",
+      "accent": "#2DD4BF",
+      "text": "#F2F3F5",
+      "text_secondary": "#A3A8B3",
+      "success": "#34D399",
+      "adjusted": "#F5B83D",
+      "error": "#FF6B6B"
+    }
+  },
+  "status_on_light": {
+    "success": "#1B7E5A",
+    "adjusted": "#966708",
+    "error": "#CC3333"
+  },
+  "fonts": {
+    "default": "inter",
+    "families": [
+      { "key": "inter", "name": "Inter" },
+      { "key": "roboto", "name": "Roboto" },
+      { "key": "montserrat", "name": "Montserrat" },
+      { "key": "poppins", "name": "Poppins" },
+      { "key": "oswald", "name": "Oswald" },
+      { "key": "barlow", "name": "Barlow" },
+      { "key": "rubik", "name": "Rubik" },
+      { "key": "bebas_neue", "name": "Bebas Neue" }
+    ]
+  }
+}

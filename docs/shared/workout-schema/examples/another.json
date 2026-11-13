@@ -1,0 +1,513 @@
+{
+  "workout_id": "w-another",
+  "program_id": "prog-advanced-1",
+  "date": "2026-11-05",
+  "status": "PUBLISHED",
+  "metadata": {
+    "title": "Clean + Gymnastics + Deadlift/HSPU",
+    "estimated_duration_minutes": 120,
+    "intention": "Complete day of clean work, technical strength and muscular endurance."
+  },
+  "blocks": [
+    {
+      "block_id": "b1",
+      "block_order": 1,
+      "block_type": "WARM_UP",
+      "title": "General warm-up",
+      "parts": [
+        {
+          "part_id": "b1-pA",
+          "structure": "TEXT",
+          "title": "GOWOD activation",
+          "lines": [
+            "1 Minute Roll Over To V Sit",
+            "1 Minute Overhead Activation"
+          ],
+          "optional": true,
+          "media_links": [
+            {
+              "type": "GOWOD",
+              "label": "GOWOD premium protocol",
+              "url": "https://premium.gowod.app"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pB",
+          "structure": "TEXT",
+          "title": "Crossover Symmetry / Banded 7s",
+          "lines": [
+            "7 reps of each movement"
+          ],
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Banded 7s",
+              "url": "https://youtu.be/Gn0_1HAkEfE"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pC",
+          "structure": "TEXT",
+          "title": "Mayhem Hip Halo",
+          "lines": [
+            "10 side steps per side",
+            "10 forward/backward walk per side",
+            "10 glute bridges",
+            "10 single leg glute bridges per side",
+            "10 bird dogs per side",
+            "10 squats"
+          ],
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Mayhem Hip Halo",
+              "url": "https://youtu.be/NfAbdabJ310"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pD",
+          "structure": "TEXT",
+          "title": "Barbell prep",
+          "lines": [
+            "Down & Finish",
+            "Elbows High & Outside",
+            "Muscle Clean",
+            "Tall Power Clean from 2\", 4\", 6\"",
+            "Tall Clean",
+            "No Hands Front Squat (Zombie Squat)",
+            "Front Squat",
+            "Pause Front Squat",
+            "1-1/4 Front Squat",
+            "In the Hole Front Squat with 10 s eccentric on the last rep",
+            "Then: 3 High Hang Clean, 3 Hang Clean, 3 Clean"
+          ],
+          "notes": "3-5 reps each"
+        }
+      ]
+    },
+    {
+      "block_id": "b2",
+      "block_order": 2,
+      "block_type": "STRENGTH_COMPLEX",
+      "title": "Muscle Cleans + High Hang Power Cleans",
+      "parts": [
+        {
+          "part_id": "b2-p1",
+          "structure": "SETS",
+          "movements": [
+            {
+              "name": "Muscle Clean",
+              "movement_key": "MUSCLE_CLEAN",
+              "reps": 3
+            },
+            {
+              "name": "High Hang Power Clean",
+              "movement_key": "HIGH_HANG_POWER_CLEAN",
+              "reps": 3
+            }
+          ],
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 1,
+              "load": {
+                "rpe": 5.5
+              },
+              "rest": {
+                "min_seconds": 60,
+                "max_seconds": 90
+              }
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Technical, speed-focused. Feel good extension, fast elbows and a clean catch."
+      }
+    },
+    {
+      "block_id": "b3",
+      "block_order": 3,
+      "block_type": "STRENGTH_COMPLEX",
+      "title": "Clean Pull + Hang Power Clean + Floating Power Clean",
+      "parts": [
+        {
+          "part_id": "b3-p1",
+          "structure": "SETS",
+          "percentage_reference": "POWER_CLEAN",
+          "movements": [
+            {
+              "name": "Clean Pull",
+              "movement_key": "CLEAN_PULL",
+              "reps": 1
+            },
+            {
+              "name": "Hang Power Clean to Parallel",
+              "movement_key": "HANG_POWER_CLEAN",
+              "reps": 1
+            },
+            {
+              "name": "Floating Power Clean",
+              "movement_key": "FLOATING_POWER_CLEAN",
+              "reps": 1
+            }
+          ],
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage_min": 0.63,
+                "percentage_max": 0.65
+              },
+              "notes": "Set 1"
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.68
+              },
+              "notes": "Set 2"
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage_min": 0.7,
+                "percentage_max": 0.73
+              },
+              "notes": "Set 3"
+            }
+          ],
+          "rest": {
+            "min_seconds": 120,
+            "max_seconds": 120
+          }
+        }
+      ],
+      "coaching": {
+        "intention": "Load rises slightly but quality stays the goal; clean pull sets the path, hang power clean fast without early arm pull."
+      }
+    },
+    {
+      "block_id": "b4",
+      "block_order": 4,
+      "block_type": "INTERVALS",
+      "title": "Every 1 min for 5 min - Power Clean",
+      "parts": [
+        {
+          "part_id": "b4-p1",
+          "structure": "INTERVALS",
+          "interval_seconds": 60,
+          "total_intervals": 5,
+          "percentage_reference": "POWER_CLEAN",
+          "intervals": [
+            {
+              "applies_to": {
+                "pattern": "ALL"
+              },
+              "movements": [
+                {
+                  "name": "Power Clean",
+                  "movement_key": "POWER_CLEAN",
+                  "reps": 2,
+                  "load": {
+                    "percentage_min": 0.75,
+                    "percentage_max": 0.78
+                  },
+                  "notes": "Touch and go"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Short, heavy but controlled; double touch and go with posture and speed."
+      }
+    },
+    {
+      "block_id": "b5",
+      "block_order": 5,
+      "block_type": "INTERVALS",
+      "title": "Every 30 s for 2 min - Deadlift",
+      "parts": [
+        {
+          "part_id": "b5-p1",
+          "structure": "INTERVALS",
+          "interval_seconds": 30,
+          "total_intervals": 4,
+          "percentage_reference": "DEADLIFT",
+          "intervals": [
+            {
+              "applies_to": {
+                "pattern": "ALL"
+              },
+              "movements": [
+                {
+                  "name": "Deadlift",
+                  "movement_key": "DEADLIFT",
+                  "reps": 4,
+                  "load": {
+                    "percentage_min": 0.65,
+                    "percentage_max": 0.675
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "optional": true,
+      "coaching": {
+        "intention": "Optional specific prep for the workout deadlift; solid, fast, good position, not maximal."
+      }
+    },
+    {
+      "block_id": "b6",
+      "block_order": 6,
+      "block_type": "WARM_UP",
+      "title": "Metcon specific warm-up",
+      "parts": [
+        {
+          "part_id": "b6-pA",
+          "structure": "TEXT",
+          "title": "Movement prep / activation",
+          "lines": [
+            "2-3 sets: 1:00 Row (increasing pace), :20 Handstand Hold into 1 SUPER SLOW Negative HSPU"
+          ],
+          "label": "A"
+        },
+        {
+          "part_id": "b6-pB",
+          "structure": "TEXT",
+          "title": "Workout prep",
+          "lines": [
+            "1 set at workout pace: 2 Deadlifts (workout weight), 2 Strict HSPU"
+          ],
+          "label": "B"
+        }
+      ]
+    },
+    {
+      "block_id": "b7",
+      "block_order": 7,
+      "block_type": "METCON",
+      "title": "If I Was Goin' Somewhere, I Was Running!",
+      "parts": [
+        {
+          "part_id": "b7-p1",
+          "structure": "WOD",
+          "wod_format": "FOR_TIME",
+          "time_cap_seconds": 780,
+          "targets": {
+            "target_time_seconds": 540,
+            "rpe": {
+              "min": 8,
+              "max": 8.5
+            },
+            "intensity_percent": {
+              "min": 80,
+              "max": 85
+            }
+          },
+          "versions": {
+            "RX": {
+              "rounds": 7,
+              "movements": [
+                {
+                  "name": "Deadlift",
+                  "movement_key": "DEADLIFT",
+                  "reps": 7,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 275,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 185,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Strict Handstand Push-Up",
+                  "movement_key": "STRICT_HSPU",
+                  "reps": 7
+                }
+              ]
+            },
+            "SCALED": {
+              "rounds": 7,
+              "movements": [
+                {
+                  "name": "Deadlift",
+                  "movement_key": "DEADLIFT",
+                  "reps": 7,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 225,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 155,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Strict Handstand Push-Up",
+                  "movement_key": "STRICT_HSPU",
+                  "reps": 4
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "scored": true,
+      "coaching": {
+        "intention": "Muscular endurance; strict HSPU is the real limiter. Split before failing.",
+        "strategy": [
+          {
+            "movement_key": "DEADLIFT",
+            "title": "Deadlift",
+            "lines": [
+              "Big sets, ideally unbroken",
+              "Push the floor with heels",
+              "Bar close"
+            ]
+          },
+          {
+            "movement_key": "STRICT_HSPU",
+            "title": "Strict HSPU",
+            "lines": [
+              "Do not reach failure",
+              "Splits: 7 / 4-3 / 3-2-2 / 2-2-2-1"
+            ]
+          }
+        ],
+        "substitutions": [
+          {
+            "for": "Deadlift",
+            "options": [
+              "185/125",
+              "155/105",
+              "Heavy kettlebell deadlift"
+            ]
+          },
+          {
+            "for": "Strict HSPU",
+            "options": [
+              "Strict HSPU with AbMat",
+              "Box pike HSPU",
+              "Dumbbell strict press",
+              "Hand release push-ups"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b8",
+      "block_order": 8,
+      "block_type": "SKILL",
+      "title": "Mayhem Gymnastics - Jump Rope Progression",
+      "parts": [
+        {
+          "part_id": "b8-p1",
+          "label": "1",
+          "title": "Tabata - 360 Degree Single Unders",
+          "structure": "WORK_REST",
+          "rounds": 4,
+          "work_seconds": 20,
+          "rest_seconds": 40,
+          "movements": [
+            {
+              "name": "360 Degree Single Under",
+              "movement_key": "SINGLE_UNDER_360",
+              "notes": "Change direction each set"
+            }
+          ],
+          "notes": "Score: total reps"
+        },
+        {
+          "part_id": "b8-p2",
+          "label": "2",
+          "title": "Double Unders",
+          "structure": "SETS",
+          "movements": [
+            {
+              "name": "Double Under",
+              "movement_key": "DOUBLE_UNDER",
+              "reps": 15
+            }
+          ],
+          "sets": [
+            {
+              "sets": 10,
+              "reps": 15,
+              "rest": {
+                "min_seconds": 45,
+                "max_seconds": 45
+              },
+              "notes": "As fast as possible"
+            }
+          ]
+        },
+        {
+          "part_id": "b8-p3",
+          "label": "3",
+          "title": "Double Under Ladder",
+          "structure": "LADDER",
+          "rep_scheme": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            20,
+            15,
+            10,
+            5
+          ],
+          "repeats": 2,
+          "movement": {
+            "name": "Double Under",
+            "movement_key": "DOUBLE_UNDER",
+            "notes": "Unbroken; stop and restart after each completed set"
+          },
+          "rest": {
+            "min_seconds": 120,
+            "max_seconds": 120
+          }
+        }
+      ]
+    },
+    {
+      "block_id": "b9",
+      "block_order": 9,
+      "block_type": "COOL_DOWN",
+      "title": "Cool down",
+      "parts": [
+        {
+          "part_id": "b9-p1",
+          "structure": "TEXT",
+          "title": "Recovery",
+          "lines": [
+            "3-5 min easy cardio",
+            "2 sets: 1:00 Seal Stretch, 1:00 Foam Roller Angels"
+          ]
+        }
+      ]
+    }
+  ]
+}

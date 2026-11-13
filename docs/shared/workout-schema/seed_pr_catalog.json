@@ -1,0 +1,67 @@
+[
+  {
+    "section": "STRENGTH",
+    "pr_key": "BACK_SQUAT",
+    "name": "Back Squat"
+  },
+  {
+    "section": "STRENGTH",
+    "pr_key": "DEADLIFT",
+    "name": "Deadlift"
+  },
+  {
+    "section": "STRENGTH",
+    "pr_key": "BENCH_PRESS",
+    "name": "Bench Press"
+  },
+  {
+    "section": "STRENGTH",
+    "pr_key": "OVERHEAD_STRICT_PRESS",
+    "name": "Overhead Strict Press"
+  },
+  {
+    "section": "WEIGHTLIFTING",
+    "pr_key": "FRONT_SQUAT",
+    "name": "Front Squat"
+  },
+  {
+    "section": "WEIGHTLIFTING",
+    "pr_key": "POWER_SNATCH",
+    "name": "Power Snatch"
+  },
+  {
+    "section": "WEIGHTLIFTING",
+    "pr_key": "SQUAT_SNATCH",
+    "name": "Squat Snatch"
+  },
+  {
+    "section": "WEIGHTLIFTING",
+    "pr_key": "SNATCH_BALANCE",
+    "name": "Snatch Balance"
+  },
+  {
+    "section": "WEIGHTLIFTING",
+    "pr_key": "POWER_CLEAN",
+    "name": "Power Clean"
+  },
+  {
+    "section": "WEIGHTLIFTING",
+    "pr_key": "SQUAT_CLEAN",
+    "name": "Squat Clean"
+  },
+  {
+    "section": "WEIGHTLIFTING",
+    "pr_key": "POWER_CLEAN_AND_JERK",
+    "name": "Power Clean & Jerk"
+  },
+  {
+    "section": "WEIGHTLIFTING",
+    "pr_key": "SPLIT_JERK",
+    "name": "Split Jerk"
+  },
+  {
+    "section": "WEIGHTLIFTING",
+    "pr_key": "OVERHEAD_SQUAT",
+    "name": "Overhead Squat"
+  }
+]

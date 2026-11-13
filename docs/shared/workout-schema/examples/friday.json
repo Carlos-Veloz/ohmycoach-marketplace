@@ -1,0 +1,618 @@
+{
+  "workout_id": "w-fri",
+  "program_id": "prog-advanced-1",
+  "date": "2026-11-06",
+  "status": "PUBLISHED",
+  "metadata": {
+    "title": "Friday - Squat Strength, Power Snatch, Core, Metcon",
+    "estimated_duration_minutes": 120,
+    "intention": "Squat strength, power snatch efficiency, core stability and an intense closing metcon.",
+    "track_label": "Competitors Track"
+  },
+  "blocks": [
+    {
+      "block_id": "b1",
+      "block_order": 1,
+      "block_type": "WARM_UP",
+      "title": "General warm-up",
+      "parts": [
+        {
+          "part_id": "b1-pA",
+          "structure": "TEXT",
+          "title": "GOWOD mobility",
+          "lines": [
+            "1 min Crossed Side To Side",
+            "1 min Lat Stretch"
+          ],
+          "optional": true,
+          "media_links": [
+            {
+              "type": "GOWOD",
+              "label": "GOWOD premium protocol",
+              "url": "https://premium.gowod.app"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pB",
+          "structure": "TEXT",
+          "title": "Crossover Symmetry / Banded 7s",
+          "lines": [
+            "7 reps of each movement"
+          ],
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Banded 7s",
+              "url": "https://youtu.be/Gn0_1HAkEfE"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pC",
+          "structure": "TEXT",
+          "title": "Mayhem Hip Halo",
+          "lines": [
+            "10 side steps per side",
+            "10 forward/backward walk per side",
+            "10 glute bridges",
+            "10 single leg glute bridges per side",
+            "10 bird dogs per side",
+            "10 squats"
+          ],
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Mayhem Hip Halo",
+              "url": "https://youtu.be/NfAbdabJ310"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pD",
+          "structure": "TEXT",
+          "title": "Barbell prep - Front Squat Skill Transfer",
+          "lines": [
+            "No Hands Front Squat (Zombie Squat)",
+            "Front Squat",
+            "Pause Front Squat",
+            "1-1/4 Front Squat",
+            "In the Hole Front Squat with 10 s eccentric on the last rep"
+          ],
+          "notes": "3-5 reps each"
+        }
+      ]
+    },
+    {
+      "block_id": "b2",
+      "block_order": 2,
+      "block_type": "STRENGTH",
+      "title": "Strength A - Front Squat",
+      "parts": [
+        {
+          "part_id": "b2-p1",
+          "structure": "SETS",
+          "percentage_reference": "FRONT_SQUAT",
+          "movements": [
+            {
+              "name": "Front Squat",
+              "movement_key": "FRONT_SQUAT"
+            }
+          ],
+          "sets": [
+            {
+              "sets": {
+                "min": 3,
+                "max": 5
+              },
+              "reps": 3,
+              "load": {
+                "percentage_min": 0.65,
+                "percentage_max": 0.75
+              },
+              "rest": {
+                "as_needed": true
+              }
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Build strength and control in the front squat.",
+        "form_cues": [
+          "High elbows",
+          "Firm torso",
+          "Controlled descent",
+          "Heels down"
+        ],
+        "intensity": {
+          "label": "Moderate"
+        }
+      }
+    },
+    {
+      "block_id": "b3",
+      "block_order": 3,
+      "block_type": "STRENGTH",
+      "title": "Strength B - Back Squat",
+      "parts": [
+        {
+          "part_id": "b3-p1",
+          "structure": "SETS",
+          "percentage_reference": "BACK_SQUAT",
+          "movements": [
+            {
+              "name": "Back Squat",
+              "movement_key": "BACK_SQUAT"
+            }
+          ],
+          "sets": [
+            {
+              "sets": {
+                "min": 3,
+                "max": 5
+              },
+              "reps": 3,
+              "load": {
+                "percentage_min": 0.68,
+                "percentage_max": 0.7
+              },
+              "notes": "3 sets if tired, 5 if feeling good"
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Leg strength inside a transition/deload week; controlled and conservative.",
+        "intensity": {
+          "label": "Moderate"
+        }
+      }
+    },
+    {
+      "block_id": "b4",
+      "block_order": 4,
+      "block_type": "INTERVALS",
+      "title": "Technical EMOM - Power Snatch",
+      "parts": [
+        {
+          "part_id": "b4-p1",
+          "structure": "INTERVALS",
+          "interval_seconds": 60,
+          "total_intervals": 15,
+          "percentage_reference": "POWER_SNATCH",
+          "intervals": [
+            {
+              "applies_to": {
+                "from": 1,
+                "to": 5
+              },
+              "movements": [
+                {
+                  "name": "Power Snatch",
+                  "movement_key": "POWER_SNATCH",
+                  "reps": 5,
+                  "load": {
+                    "rpe": 5
+                  }
+                }
+              ]
+            },
+            {
+              "applies_to": {
+                "from": 6,
+                "to": 10
+              },
+              "movements": [
+                {
+                  "name": "Power Snatch",
+                  "movement_key": "POWER_SNATCH",
+                  "reps": 5,
+                  "load": {
+                    "rpe": 6
+                  }
+                }
+              ]
+            },
+            {
+              "applies_to": {
+                "from": 11,
+                "to": 15
+              },
+              "movements": [
+                {
+                  "name": "Power Snatch",
+                  "movement_key": "POWER_SNATCH",
+                  "reps": 5,
+                  "load": {
+                    "rpe": 7
+                  }
+                }
+              ]
+            }
+          ],
+          "notes": "All sets touch-and-go"
+        }
+      ],
+      "coaching": {
+        "intention": "Barbell cycling efficiency with controlled progressive load.",
+        "form_cues": [
+          "Bar close",
+          "Good hip use",
+          "Solid catch",
+          "Steady rhythm"
+        ]
+      }
+    },
+    {
+      "block_id": "b5",
+      "block_order": 5,
+      "block_type": "ACCESSORY",
+      "title": "Core work",
+      "parts": [
+        {
+          "part_id": "b5-p1",
+          "structure": "ROUNDS",
+          "rounds": 3,
+          "movements": [
+            {
+              "name": "Turkish Get-Up",
+              "movement_key": "TURKISH_GET_UP",
+              "reps": 4,
+              "notes": "2 per side",
+              "load": {
+                "athlete_choice": true
+              }
+            },
+            {
+              "name": "Kettlebell Suitcase Hold",
+              "movement_key": "KB_SUITCASE_HOLD",
+              "duration_seconds": 60,
+              "notes": "30 s per side",
+              "load": {
+                "athlete_choice": true
+              }
+            },
+            {
+              "name": "Front Rack Carry",
+              "movement_key": "FRONT_RACK_CARRY",
+              "distance": {
+                "value": 50,
+                "unit": "FT"
+              },
+              "load": {
+                "athlete_choice": true
+              }
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Core stability, unilateral control, stable shoulder and load-carrying capacity."
+      }
+    },
+    {
+      "block_id": "b6",
+      "block_order": 6,
+      "block_type": "WARM_UP",
+      "title": "Metcon specific warm-up",
+      "parts": [
+        {
+          "part_id": "b6-pA",
+          "structure": "TEXT",
+          "title": "Movement prep / activation",
+          "lines": [
+            "2-3 sets: 1:00 Row (moderate), 10 Single Arm High Pull per arm, 10 Alt. Leg V-Up, 10 Kip to Swing",
+            "Then warm up to workout weight and movements"
+          ],
+          "label": "A"
+        },
+        {
+          "part_id": "b6-pB",
+          "structure": "TEXT",
+          "title": "Workout prep",
+          "lines": [
+            "1 set at competition pace: 2 Dumbbell Snatch (workout weight), 3 Toes to Bar"
+          ],
+          "label": "B"
+        }
+      ]
+    },
+    {
+      "block_id": "b7",
+      "block_order": 7,
+      "block_type": "METCON",
+      "title": "Your Mother Was a Hamster...",
+      "parts": [
+        {
+          "part_id": "b7-p1",
+          "structure": "WOD",
+          "wod_format": "FOR_TIME",
+          "time_cap_seconds": 840,
+          "targets": {
+            "target_time_seconds": {
+              "min": 540,
+              "max": 660
+            },
+            "rpe": 8.5
+          },
+          "versions": {
+            "RX": {
+              "movements": [
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 50,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 35,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Toes to Bar",
+                  "movement_key": "TOES_TO_BAR",
+                  "reps": 30
+                },
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 50,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 35,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Burpee to Target",
+                  "movement_key": "BURPEE_TO_TARGET",
+                  "reps": 30
+                },
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 50,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 35,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Burpee to Target",
+                  "movement_key": "BURPEE_TO_TARGET",
+                  "reps": 30
+                },
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 50,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 35,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Toes to Bar",
+                  "movement_key": "TOES_TO_BAR",
+                  "reps": 30
+                },
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 50,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 35,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "SCALED": {
+              "movements": [
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 40,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 25,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Toes to Bar",
+                  "movement_key": "TOES_TO_BAR",
+                  "reps": 20
+                },
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 40,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 25,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Burpee to Bar",
+                  "movement_key": "BURPEE_TO_BAR",
+                  "reps": 20
+                },
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 40,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 25,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Burpee to Bar",
+                  "movement_key": "BURPEE_TO_BAR",
+                  "reps": 20
+                },
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 40,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 25,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Toes to Bar",
+                  "movement_key": "TOES_TO_BAR",
+                  "reps": 20
+                },
+                {
+                  "name": "Dumbbell Snatch",
+                  "movement_key": "DB_SNATCH",
+                  "reps": 20,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 40,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 25,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "scored": true,
+      "coaching": {
+        "intention": "Gassy plus muscular endurance; heavy breathing, core, grip and transitions.",
+        "strategy": [
+          {
+            "movement_key": "DB_SNATCH",
+            "title": "Dumbbell Snatch",
+            "lines": [
+              "Fluid sets",
+              "Minimize time switching arms"
+            ]
+          },
+          {
+            "movement_key": "TOES_TO_BAR",
+            "title": "Toes to Bar",
+            "lines": [
+              "Not necessarily unbroken",
+              "Planned sets, avoid long rests"
+            ]
+          }
+        ],
+        "substitutions": [
+          {
+            "for": "Toes to Bar",
+            "options": [
+              "Knees to chest",
+              "V-Ups"
+            ]
+          },
+          {
+            "for": "Burpee to Target",
+            "options": [
+              "Burpee to bar",
+              "Simple burpee with target"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b8",
+      "block_order": 8,
+      "block_type": "COOL_DOWN",
+      "title": "Cool down",
+      "parts": [
+        {
+          "part_id": "b8-p1",
+          "structure": "TEXT",
+          "title": "Recovery",
+          "lines": [
+            "3-5 min easy cardio",
+            "2 sets: 1:00 Cat Cow, 1:00 Forearm Smash"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1062 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ohmycoach.example/schemas/workout.schema.json",
+  "title": "Workout",
+  "description": "One training day of a program as an ordered list of blocks. A block is one numbered section of the coach's programming and contains one or more parts. Single source of truth for backend, web admin and mobile. See docs/shared/04-workout-block-model.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "workout_id",
+    "program_id",
+    "date",
+    "status",
+    "metadata",
+    "blocks"
+  ],
+  "properties": {
+    "workout_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "program_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "PUBLISHED"
+      ]
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata"
+    },
+    "blocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/Block"
+      }
+    }
+  },
+  "$defs": {
+    "Metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "estimated_duration_minutes"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "track_label": {
+          "type": "string"
+        },
+        "estimated_duration_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "intention": {
+          "type": "string"
+        },
+        "closing_note": {
+          "type": "string"
+        }
+      }
+    },
+    "Unit": {
+      "enum": [
+        "LB",
+        "KG",
+        "M",
+        "KM",
+        "FT",
+        "IN",
+        "CM",
+        "CAL"
+      ]
+    },
+    "Quantity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "unit"
+      ],
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": 0
+        },
+        "unit": {
+          "$ref": "#/$defs/Unit"
+        }
+      }
+    },
+    "Gendered": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "men",
+        "women"
+      ],
+      "properties": {
+        "men": {
+          "$ref": "#/$defs/Quantity"
+        },
+        "women": {
+          "$ref": "#/$defs/Quantity"
+        }
+      }
+    },
+    "QuantityOrGendered": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/Quantity"
+        },
+        {
+          "$ref": "#/$defs/Gendered"
+        }
+      ]
+    },
+    "Range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        }
+      }
+    },
+    "IntRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "Reps": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "$ref": "#/$defs/IntRange"
+        },
+        {
+          "const": "MAX"
+        }
+      ]
+    },
+    "NumberOrRange": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "$ref": "#/$defs/Range"
+        }
+      ]
+    },
+    "Load": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "percentage": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1.5
+        },
+        "percentage_min": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1.5
+        },
+        "percentage_max": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1.5
+        },
+        "rpe": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 10
+            },
+            {
+              "$ref": "#/$defs/Range"
+            }
+          ]
+        },
+        "weight": {
+          "$ref": "#/$defs/QuantityOrGendered"
+        },
+        "athlete_choice": {
+          "type": "boolean"
+        },
+        "empty_bar": {
+          "type": "boolean"
+        }
+      },
+      "dependentRequired": {
+        "percentage_min": [
+          "percentage_max"
+        ],
+        "percentage_max": [
+          "percentage_min"
+        ]
+      },
+      "not": {
+        "required": [
+          "percentage",
+          "percentage_min"
+        ]
+      }
+    },
+    "Rest": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "min_seconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_seconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "as_needed": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "MediaLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "label",
+        "url"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "YOUTUBE",
+            "GOWOD",
+            "OTHER"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "Coaching": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "intention": {
+          "type": "string"
+        },
+        "stimulus": {
+          "type": "string"
+        },
+        "form_cues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "strategy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "lines"
+            ],
+            "properties": {
+              "movement_key": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "lines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "substitutions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "for",
+              "options"
+            ],
+            "properties": {
+              "for": {
+                "type": "string"
+              },
+              "options": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "intensity": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "rpe": {
+              "$ref": "#/$defs/NumberOrRange"
+            },
+            "label": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "MovementLine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "movement_key": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reps": {
+          "$ref": "#/$defs/Reps"
+        },
+        "reps_by_round": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "per_side": {
+          "type": "boolean"
+        },
+        "duration_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "distance": {
+          "$ref": "#/$defs/QuantityOrGendered"
+        },
+        "calories": {
+          "$ref": "#/$defs/QuantityOrGendered"
+        },
+        "height": {
+          "$ref": "#/$defs/QuantityOrGendered"
+        },
+        "load": {
+          "$ref": "#/$defs/Load"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "media_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MediaLink"
+          }
+        }
+      },
+      "not": {
+        "required": [
+          "reps",
+          "reps_by_round"
+        ]
+      }
+    },
+    "SetGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sets",
+        "reps"
+      ],
+      "properties": {
+        "sets": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "$ref": "#/$defs/IntRange"
+            }
+          ]
+        },
+        "reps": {
+          "$ref": "#/$defs/Reps"
+        },
+        "load": {
+          "$ref": "#/$defs/Load"
+        },
+        "rest": {
+          "$ref": "#/$defs/Rest"
+        },
+        "time_cap_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "RampUpStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "load"
+      ],
+      "properties": {
+        "load": {
+          "$ref": "#/$defs/Load"
+        },
+        "reps": {
+          "$ref": "#/$defs/Reps"
+        },
+        "movements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MovementLine"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "IntervalSelector": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pattern"
+          ],
+          "properties": {
+            "pattern": {
+              "enum": [
+                "ALL",
+                "ODD",
+                "EVEN"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to"
+          ],
+          "properties": {
+            "from": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "to": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      ]
+    },
+    "Interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applies_to",
+        "movements"
+      ],
+      "properties": {
+        "applies_to": {
+          "$ref": "#/$defs/IntervalSelector"
+        },
+        "movements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/SequenceItem"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "Targets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "target_time_seconds": {
+          "$ref": "#/$defs/NumberOrRange"
+        },
+        "target_rounds": {
+          "type": "number"
+        },
+        "minimum_reference_rounds": {
+          "type": "number"
+        },
+        "per_interval_target_seconds": {
+          "type": "number"
+        },
+        "rpe": {
+          "$ref": "#/$defs/NumberOrRange"
+        },
+        "intensity_percent": {
+          "$ref": "#/$defs/NumberOrRange"
+        }
+      }
+    },
+    "WodBody": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rounds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "interval_seconds": {
+          "type": "integer",
+          "minimum": 5
+        },
+        "intervals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Interval"
+          }
+        },
+        "movements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/SequenceItem"
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "movements"
+          ]
+        },
+        {
+          "required": [
+            "intervals"
+          ]
+        }
+      ]
+    },
+    "CommonPart": {
+      "type": "object",
+      "required": [
+        "part_id",
+        "structure"
+      ],
+      "properties": {
+        "part_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 3
+        },
+        "title": {
+          "type": "string"
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "media_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MediaLink"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "structure": {
+          "enum": [
+            "TEXT",
+            "SETS",
+            "ROUNDS",
+            "INTERVALS",
+            "WORK_REST",
+            "LADDER",
+            "WOD"
+          ]
+        }
+      }
+    },
+    "TextPart": {
+      "properties": {
+        "structure": {
+          "const": "TEXT"
+        }
+      },
+      "required": [
+        "structure",
+        "lines"
+      ]
+    },
+    "SetsPart": {
+      "properties": {
+        "structure": {
+          "const": "SETS"
+        },
+        "movements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/MovementLine"
+          }
+        },
+        "sets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/SetGroup"
+          }
+        },
+        "ramp_up": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RampUpStep"
+          }
+        },
+        "percentage_reference": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]+$"
+        },
+        "rest": {
+          "$ref": "#/$defs/Rest"
+        }
+      },
+      "required": [
+        "structure",
+        "movements",
+        "sets"
+      ]
+    },
+    "RoundsPart": {
+      "properties": {
+        "structure": {
+          "const": "ROUNDS"
+        },
+        "rounds": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "$ref": "#/$defs/IntRange"
+            }
+          ]
+        },
+        "movements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/SequenceItem"
+          }
+        },
+        "rest_between_movements": {
+          "$ref": "#/$defs/Rest"
+        },
+        "rest_between_rounds": {
+          "$ref": "#/$defs/Rest"
+        }
+      },
+      "required": [
+        "structure",
+        "rounds",
+        "movements"
+      ]
+    },
+    "IntervalsPart": {
+      "properties": {
+        "structure": {
+          "const": "INTERVALS"
+        },
+        "interval_seconds": {
+          "type": "integer",
+          "minimum": 5
+        },
+        "total_intervals": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "intervals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Interval"
+          }
+        },
+        "percentage_reference": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]+$"
+        }
+      },
+      "required": [
+        "structure",
+        "interval_seconds",
+        "total_intervals",
+        "intervals"
+      ]
+    },
+    "WorkRestPart": {
+      "properties": {
+        "structure": {
+          "const": "WORK_REST"
+        },
+        "rounds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "work_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rest_seconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "movements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/MovementLine"
+          }
+        }
+      },
+      "required": [
+        "structure",
+        "rounds",
+        "work_seconds",
+        "rest_seconds",
+        "movements"
+      ]
+    },
+    "LadderPart": {
+      "properties": {
+        "structure": {
+          "const": "LADDER"
+        },
+        "rep_scheme": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "repeats": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "movement": {
+          "$ref": "#/$defs/MovementLine"
+        },
+        "rest": {
+          "$ref": "#/$defs/Rest"
+        }
+      },
+      "required": [
+        "structure",
+        "rep_scheme",
+        "movement"
+      ]
+    },
+    "WodPart": {
+      "properties": {
+        "structure": {
+          "const": "WOD"
+        },
+        "wod_format": {
+          "enum": [
+            "FOR_TIME",
+            "AMRAP",
+            "INTERVALS"
+          ]
+        },
+        "time_cap_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "duration_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "interval_time_cap_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "targets": {
+          "$ref": "#/$defs/Targets"
+        },
+        "versions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "RX"
+          ],
+          "properties": {
+            "RX": {
+              "$ref": "#/$defs/WodBody"
+            },
+            "SCALED": {
+              "$ref": "#/$defs/WodBody"
+            }
+          }
+        }
+      },
+      "required": [
+        "structure",
+        "wod_format",
+        "versions"
+      ],
+      "if": {
+        "properties": {
+          "wod_format": {
+            "const": "AMRAP"
+          }
+        },
+        "required": [
+          "wod_format"
+        ]
+      },
+      "then": {
+        "required": [
+          "duration_seconds"
+        ]
+      }
+    },
+    "Part": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CommonPart"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/TextPart"
+            },
+            {
+              "$ref": "#/$defs/SetsPart"
+            },
+            {
+              "$ref": "#/$defs/RoundsPart"
+            },
+            {
+              "$ref": "#/$defs/IntervalsPart"
+            },
+            {
+              "$ref": "#/$defs/WorkRestPart"
+            },
+            {
+              "$ref": "#/$defs/LadderPart"
+            },
+            {
+              "$ref": "#/$defs/WodPart"
+            }
+          ]
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "Block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "block_id",
+        "block_order",
+        "block_type",
+        "title",
+        "parts"
+      ],
+      "properties": {
+        "block_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "block_order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "block_type": {
+          "enum": [
+            "WARM_UP",
+            "STRENGTH",
+            "STRENGTH_COMPLEX",
+            "INTERVALS",
+            "ACCESSORY",
+            "METCON",
+            "SKILL",
+            "COOL_DOWN",
+            "CUSTOM"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "scored": {
+          "type": "boolean"
+        },
+        "coaching": {
+          "$ref": "#/$defs/Coaching"
+        },
+        "media_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MediaLink"
+          }
+        },
+        "parts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Part"
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "scored": {
+            "const": true
+          }
+        },
+        "required": [
+          "scored"
+        ]
+      },
+      "then": {
+        "properties": {
+          "block_type": {
+            "const": "METCON"
+          },
+          "parts": {
+            "maxItems": 1,
+            "items": {
+              "properties": {
+                "structure": {
+                  "const": "WOD"
+                },
+                "wod_format": {
+                  "enum": [
+                    "FOR_TIME",
+                    "AMRAP"
+                  ]
+                }
+              },
+              "required": [
+                "structure",
+                "wod_format"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "RestLine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rest"
+      ],
+      "properties": {
+        "rest": {
+          "$ref": "#/$defs/Rest"
+        }
+      }
+    },
+    "SequenceItem": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/MovementLine"
+        },
+        {
+          "$ref": "#/$defs/RestLine"
+        }
+      ]
+    }
+  }
+}

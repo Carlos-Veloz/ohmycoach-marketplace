@@ -1,0 +1,594 @@
+{
+  "workout_id": "w-wed",
+  "program_id": "prog-advanced-1",
+  "date": "2026-11-04",
+  "status": "PUBLISHED",
+  "metadata": {
+    "title": "Wednesday - Clean, Posterior Chain, Engine",
+    "estimated_duration_minutes": 120,
+    "intention": "Clean technique, posterior chain strength and leg muscular endurance."
+  },
+  "blocks": [
+    {
+      "block_id": "b1",
+      "block_order": 1,
+      "block_type": "WARM_UP",
+      "title": "General warm-up",
+      "parts": [
+        {
+          "part_id": "b1-pA",
+          "structure": "TEXT",
+          "title": "GOWOD mobility",
+          "lines": [
+            "1:00 Active Frog",
+            "1:00 Standing Quad Stretch"
+          ],
+          "optional": true,
+          "media_links": [
+            {
+              "type": "GOWOD",
+              "label": "GOWOD premium protocol",
+              "url": "https://premium.gowod.app"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pB",
+          "structure": "TEXT",
+          "title": "Shoulder activation - Banded 7s",
+          "lines": [
+            "7 reps of each movement"
+          ],
+          "label": "A",
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Banded 7s",
+              "url": "https://youtu.be/Gn0_1HAkEfE"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pC",
+          "structure": "TEXT",
+          "title": "Mayhem Hip Halo",
+          "lines": [
+            "10 side steps per side",
+            "10 forward/backward walk per side",
+            "10 glute bridges",
+            "10 single leg glute bridges per side",
+            "10 bird dogs per side",
+            "10 squats"
+          ],
+          "label": "B",
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Mayhem Hip Halo",
+              "url": "https://youtu.be/NfAbdabJ310"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pD",
+          "structure": "TEXT",
+          "title": "Burgener warm-up - Clean",
+          "lines": [
+            "Down & Finish",
+            "Elbows High & Outside",
+            "Muscle Clean",
+            "Tall Power Clean from 2\", 4\", 6\"",
+            "Tall Clean"
+          ],
+          "label": "C",
+          "notes": "3-5 reps per position"
+        },
+        {
+          "part_id": "b1-pE",
+          "structure": "TEXT",
+          "title": "Front Squat technique",
+          "lines": [
+            "No Hands Front Squat (Zombie Squat)",
+            "Front Squat",
+            "Pause Front Squat",
+            "1-1/4 Front Squat",
+            "In the Hole Front Squat with 10 s eccentric on the last rep"
+          ],
+          "label": "D",
+          "notes": "3-5 reps each"
+        }
+      ]
+    },
+    {
+      "block_id": "b2",
+      "block_order": 2,
+      "block_type": "STRENGTH",
+      "title": "Hang Squat Clean",
+      "parts": [
+        {
+          "part_id": "b2-p1",
+          "structure": "SETS",
+          "percentage_reference": "SQUAT_CLEAN",
+          "movements": [
+            {
+              "name": "Hang Squat Clean",
+              "movement_key": "HANG_SQUAT_CLEAN",
+              "notes": "Bar starts above the knee"
+            }
+          ],
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 3,
+              "load": {
+                "percentage": 0.7
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 3,
+              "reps": 3,
+              "load": {
+                "percentage_min": 0.7,
+                "percentage_max": 0.75
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            }
+          ],
+          "ramp_up": [
+            {
+              "load": {
+                "empty_bar": true
+              },
+              "reps": 5,
+              "movements": [
+                {
+                  "name": "Hang Muscle Clean",
+                  "movement_key": "HANG_MUSCLE_CLEAN",
+                  "reps": 5
+                },
+                {
+                  "name": "Front Squat",
+                  "movement_key": "FRONT_SQUAT",
+                  "reps": 5
+                }
+              ]
+            },
+            {
+              "load": {
+                "percentage": 0.4
+              },
+              "reps": 3
+            },
+            {
+              "load": {
+                "percentage": 0.5
+              },
+              "reps": 3
+            },
+            {
+              "load": {
+                "percentage": 0.6
+              },
+              "reps": 2
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Improve the deep catch of the clean, coordination and speed under the bar.",
+        "form_cues": [
+          "Fast high elbows",
+          "Stable heels on catch",
+          "Full-depth squat",
+          "Firm torso on the way up"
+        ],
+        "intensity": {
+          "rpe": {
+            "min": 7,
+            "max": 8
+          }
+        },
+        "substitutions": [
+          {
+            "for": "Hang Squat Clean",
+            "options": [
+              "Hang Power Clean + Front Squat"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b3",
+      "block_order": 3,
+      "block_type": "STRENGTH_COMPLEX",
+      "title": "Deadlift + Clean Pull",
+      "parts": [
+        {
+          "part_id": "b3-p1",
+          "structure": "SETS",
+          "percentage_reference": "SQUAT_CLEAN",
+          "movements": [
+            {
+              "name": "Deadlift",
+              "movement_key": "DEADLIFT",
+              "reps": 3
+            },
+            {
+              "name": "Clean Pull",
+              "movement_key": "CLEAN_PULL",
+              "reps": 3
+            }
+          ],
+          "sets": [
+            {
+              "sets": 4,
+              "reps": 1,
+              "load": {
+                "percentage": 0.9
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 180
+              },
+              "notes": "Same load all four sets"
+            }
+          ],
+          "ramp_up": [
+            {
+              "load": {
+                "percentage": 0.5
+              },
+              "movements": [
+                {
+                  "name": "Deadlift",
+                  "movement_key": "DEADLIFT",
+                  "reps": 3
+                },
+                {
+                  "name": "Clean Pull",
+                  "movement_key": "CLEAN_PULL",
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "load": {
+                "percentage": 0.65
+              },
+              "movements": [
+                {
+                  "name": "Deadlift",
+                  "movement_key": "DEADLIFT",
+                  "reps": 2
+                },
+                {
+                  "name": "Clean Pull",
+                  "movement_key": "CLEAN_PULL",
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "load": {
+                "percentage": 0.75
+              },
+              "movements": [
+                {
+                  "name": "Deadlift",
+                  "movement_key": "DEADLIFT",
+                  "reps": 2
+                },
+                {
+                  "name": "Clean Pull",
+                  "movement_key": "CLEAN_PULL",
+                  "reps": 1
+                }
+              ]
+            },
+            {
+              "load": {
+                "percentage": 0.85
+              },
+              "movements": [
+                {
+                  "name": "Deadlift",
+                  "movement_key": "DEADLIFT",
+                  "reps": 1
+                },
+                {
+                  "name": "Clean Pull",
+                  "movement_key": "CLEAN_PULL",
+                  "reps": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Posterior chain strength and powerful pull transfer to the clean. Start positions of deadlift and clean pull differ.",
+        "substitutions": [
+          {
+            "for": "Load",
+            "options": [
+              "Reduce to a percentage that keeps positions and speed"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b4",
+      "block_order": 4,
+      "block_type": "ACCESSORY",
+      "title": "Glutes and hamstrings",
+      "parts": [
+        {
+          "part_id": "b4-p1",
+          "structure": "ROUNDS",
+          "rounds": {
+            "min": 3,
+            "max": 4
+          },
+          "movements": [
+            {
+              "name": "Single Leg Romanian Deadlift",
+              "movement_key": "SINGLE_LEG_RDL",
+              "reps": 6,
+              "per_side": true,
+              "load": {
+                "rpe": 7
+              },
+              "notes": "Rest 15 s after",
+              "media_links": [
+                {
+                  "type": "YOUTUBE",
+                  "label": "RDL hinge reference",
+                  "url": "https://youtu.be/7j-2w4-P14I"
+                }
+              ]
+            },
+            {
+              "name": "Rower Hamstring Curl",
+              "movement_key": "ROWER_HAMSTRING_CURL",
+              "reps": {
+                "min": 15,
+                "max": 20
+              }
+            }
+          ],
+          "rest_between_movements": {
+            "min_seconds": 15,
+            "max_seconds": 15
+          },
+          "rest_between_rounds": {
+            "min_seconds": 120,
+            "max_seconds": 180
+          }
+        }
+      ],
+      "coaching": {
+        "intention": "Unilateral strength, hip stability and hamstring endurance.",
+        "substitutions": [
+          {
+            "for": "Single Leg RDL",
+            "options": [
+              "B-Stance RDL"
+            ]
+          },
+          {
+            "for": "Rower Hamstring Curl",
+            "options": [
+              "Sliding Hamstring Curl with towels or sliders"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b5",
+      "block_order": 5,
+      "block_type": "WARM_UP",
+      "title": "Metcon specific warm-up",
+      "parts": [
+        {
+          "part_id": "b5-pA",
+          "structure": "TEXT",
+          "title": "Echo/Assault Bike",
+          "lines": [
+            "Arms and legs: 40 s easy, 20 s moderate, 10 s fast, 20 s rest",
+            "Legs only: same",
+            "Arms only: 40 s easy, 20 s moderate, 10 s fast"
+          ],
+          "label": "A"
+        },
+        {
+          "part_id": "b5-pB",
+          "structure": "TEXT",
+          "title": "Activation",
+          "lines": [
+            "2-3 rounds: 5 Lateral Box Step-Ups per leg (high box), 5 heavy Wall Balls to low target"
+          ],
+          "label": "B"
+        },
+        {
+          "part_id": "b5-pC",
+          "structure": "TEXT",
+          "title": "Workout prep",
+          "lines": [
+            "1 round at WOD pace: 3/2 cal Air Bike, 2 Box Step-Ups at WOD height, 3 Wall Balls at WOD weight"
+          ],
+          "label": "C"
+        }
+      ]
+    },
+    {
+      "block_id": "b6",
+      "block_order": 6,
+      "block_type": "METCON",
+      "title": "Let's Not Go To Camelot",
+      "parts": [
+        {
+          "part_id": "b6-p1",
+          "structure": "WOD",
+          "wod_format": "AMRAP",
+          "duration_seconds": 1200,
+          "targets": {
+            "target_rounds": 8,
+            "minimum_reference_rounds": 6,
+            "rpe": 8
+          },
+          "versions": {
+            "RX": {
+              "movements": [
+                {
+                  "name": "Air Bike",
+                  "movement_key": "AIR_BIKE",
+                  "calories": {
+                    "men": {
+                      "value": 15,
+                      "unit": "CAL"
+                    },
+                    "women": {
+                      "value": 12,
+                      "unit": "CAL"
+                    }
+                  }
+                },
+                {
+                  "name": "Box Step-Up",
+                  "movement_key": "BOX_STEP_UP",
+                  "reps": 15,
+                  "height": {
+                    "value": 20,
+                    "unit": "IN"
+                  }
+                },
+                {
+                  "name": "Wall Ball",
+                  "movement_key": "WALL_BALL",
+                  "reps": 15,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 20,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 14,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "SCALED": {
+              "movements": [
+                {
+                  "name": "Air Bike",
+                  "movement_key": "AIR_BIKE",
+                  "calories": {
+                    "men": {
+                      "value": 12,
+                      "unit": "CAL"
+                    },
+                    "women": {
+                      "value": 10,
+                      "unit": "CAL"
+                    }
+                  }
+                },
+                {
+                  "name": "Box Step-Up",
+                  "movement_key": "BOX_STEP_UP",
+                  "reps": 10,
+                  "height": {
+                    "value": 20,
+                    "unit": "IN"
+                  }
+                },
+                {
+                  "name": "Wall Ball",
+                  "movement_key": "WALL_BALL",
+                  "reps": 10,
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 20,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 14,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "scored": true,
+      "coaching": {
+        "intention": "Cardio capacity plus leg muscular endurance; sustainable pace, speed up in the last minutes.",
+        "strategy": [
+          {
+            "movement_key": "WALL_BALL",
+            "title": "Wall Ball",
+            "lines": [
+              "Likely the hardest as rounds accumulate",
+              "Unbroken sets when possible"
+            ]
+          }
+        ],
+        "substitutions": [
+          {
+            "for": "Air Bike",
+            "options": [
+              "BikeErg with calories adjusted"
+            ]
+          },
+          {
+            "for": "Box Step-Up",
+            "options": [
+              "Lower box"
+            ]
+          },
+          {
+            "for": "Wall Ball",
+            "options": [
+              "Lighter ball or lower target"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b7",
+      "block_order": 7,
+      "block_type": "COOL_DOWN",
+      "title": "Cool down",
+      "parts": [
+        {
+          "part_id": "b7-p1",
+          "structure": "TEXT",
+          "title": "Recovery",
+          "lines": [
+            "3-5 min easy cardio",
+            "2 rounds: 1:00 Glute/Quad Smash, 1:00 Couch Stretch, 1:00 Pigeon Stretch"
+          ]
+        }
+      ]
+    }
+  ]
+}

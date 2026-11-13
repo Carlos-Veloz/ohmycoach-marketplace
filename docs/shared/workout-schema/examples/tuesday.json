@@ -1,0 +1,646 @@
+{
+  "workout_id": "w-tue",
+  "program_id": "prog-advanced-1",
+  "date": "2026-11-03",
+  "status": "PUBLISHED",
+  "metadata": {
+    "title": "Tuesday - Clean Power, Shoulder Strength, Run/Core",
+    "estimated_duration_minutes": 120,
+    "intention": "Clean power, shoulder strength and endurance, trunk stability and cardio capacity."
+  },
+  "blocks": [
+    {
+      "block_id": "b1",
+      "block_order": 1,
+      "block_type": "WARM_UP",
+      "title": "General warm-up",
+      "parts": [
+        {
+          "part_id": "b1-pA",
+          "structure": "TEXT",
+          "title": "GOWOD mobility",
+          "lines": [
+            "1:00 Calf Stretch in Downward Facing Dog",
+            "1:00 Active Bridge Reach"
+          ],
+          "optional": true,
+          "media_links": [
+            {
+              "type": "GOWOD",
+              "label": "GOWOD premium protocol",
+              "url": "https://premium.gowod.app"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pB",
+          "structure": "TEXT",
+          "title": "Crossover Symmetry / Banded 7s",
+          "lines": [
+            "7 reps of each movement"
+          ],
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Banded 7s",
+              "url": "https://youtu.be/Gn0_1HAkEfE"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pC",
+          "structure": "TEXT",
+          "title": "Mayhem Hip Halo",
+          "lines": [
+            "10 side steps per side",
+            "10 forward/backward walk per side",
+            "10 glute bridges",
+            "10 single leg glute bridges per side",
+            "10 bird dogs per side",
+            "10 squats"
+          ],
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Mayhem Hip Halo",
+              "url": "https://youtu.be/NfAbdabJ310"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pD",
+          "structure": "TEXT",
+          "title": "Barbell prep",
+          "lines": [
+            "Down & Finish",
+            "Elbows High & Outside",
+            "Muscle Clean",
+            "Tall Power Clean from 2\", 4\", 6\"",
+            "Tall Clean",
+            "Front Squat Skill Transfer: No Hands Front Squat (Zombie Squat), Front Squat, Pause Front Squat, 1-1/4 Front Squat, In the Hole Front Squat with 10 s eccentric on the last rep",
+            "Finish: 3 High Hang Clean, 3 Hang Clean, 3 Clean"
+          ]
+        }
+      ]
+    },
+    {
+      "block_id": "b2",
+      "block_order": 2,
+      "block_type": "STRENGTH_COMPLEX",
+      "title": "Clean complex",
+      "parts": [
+        {
+          "part_id": "b2-p1",
+          "structure": "SETS",
+          "percentage_reference": "SQUAT_CLEAN",
+          "movements": [
+            {
+              "name": "Clean Pull",
+              "movement_key": "CLEAN_PULL",
+              "reps": 1
+            },
+            {
+              "name": "Hang Power Clean",
+              "movement_key": "HANG_POWER_CLEAN",
+              "reps": 1
+            },
+            {
+              "name": "Power Clean",
+              "movement_key": "POWER_CLEAN",
+              "reps": 1
+            }
+          ],
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage_min": 0.72,
+                "percentage_max": 0.75
+              },
+              "notes": "Set 1"
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage_min": 0.72,
+                "percentage_max": 0.75
+              },
+              "notes": "Set 2"
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage_min": 0.78,
+                "percentage_max": 0.8
+              },
+              "notes": "Set 3"
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage_min": 0.78,
+                "percentage_max": 0.8
+              },
+              "notes": "Set 4"
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage_min": 0.78,
+                "percentage_max": 0.8
+              },
+              "notes": "Set 5"
+            }
+          ],
+          "ramp_up": [
+            {
+              "load": {
+                "empty_bar": true
+              },
+              "reps": 2,
+              "notes": "2 technical complexes"
+            },
+            {
+              "load": {
+                "percentage": 0.4
+              },
+              "reps": 1
+            },
+            {
+              "load": {
+                "percentage": 0.55
+              },
+              "reps": 1
+            },
+            {
+              "load": {
+                "percentage": 0.65
+              },
+              "reps": 1
+            }
+          ],
+          "rest": {
+            "as_needed": true
+          },
+          "notes": "All complexes touch & go"
+        }
+      ],
+      "coaching": {
+        "intention": "Second-extension power, speed under the bar and transitions between clean positions.",
+        "intensity": {
+          "label": "Moderate-high"
+        },
+        "substitutions": [
+          {
+            "for": "Clean complex",
+            "options": [
+              "Lower the percentage and use a light bar if touch & go breaks down"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b3",
+      "block_order": 3,
+      "block_type": "STRENGTH",
+      "title": "Strict Deficit HSPU",
+      "parts": [
+        {
+          "part_id": "b3-p1",
+          "structure": "SETS",
+          "movements": [
+            {
+              "name": "Strict Deficit HSPU",
+              "movement_key": "STRICT_DEFICIT_HSPU",
+              "reps": 10,
+              "height": {
+                "men": {
+                  "value": 3,
+                  "unit": "IN"
+                },
+                "women": {
+                  "value": 2,
+                  "unit": "IN"
+                }
+              }
+            }
+          ],
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "rest": {
+                "min_seconds": 150,
+                "max_seconds": 150
+              },
+              "time_cap_seconds": 90,
+              "notes": "Add 20/14 lb vest if easy"
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Strict shoulder and triceps strength in inverted position.",
+        "substitutions": [
+          {
+            "for": "Strict Deficit HSPU",
+            "options": [
+              "Strict HSPU no deficit",
+              "Strict HSPU with AbMat",
+              "Pike push-ups on box"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b4",
+      "block_order": 4,
+      "block_type": "STRENGTH",
+      "title": "Seated Strict Pin Press",
+      "parts": [
+        {
+          "part_id": "b4-p1",
+          "structure": "SETS",
+          "movements": [
+            {
+              "name": "Seated Strict Pin Press",
+              "movement_key": "SEATED_STRICT_PIN_PRESS",
+              "notes": "Pins set between nose and forehead height"
+            }
+          ],
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 5,
+              "load": {
+                "athlete_choice": true
+              },
+              "notes": "Heavy set; 10-12 minutes total"
+            }
+          ],
+          "ramp_up": [
+            {
+              "load": {
+                "athlete_choice": true
+              },
+              "reps": 8,
+              "notes": "Light bar"
+            },
+            {
+              "load": {
+                "athlete_choice": true
+              },
+              "reps": 5,
+              "notes": "Moderate"
+            },
+            {
+              "load": {
+                "athlete_choice": true
+              },
+              "reps": 5,
+              "notes": "Intermediate"
+            },
+            {
+              "load": {
+                "athlete_choice": true
+              },
+              "reps": 3,
+              "notes": "Demanding"
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Strict pressing strength from a dead stop, no leg drive.",
+        "substitutions": [
+          {
+            "for": "Seated Strict Pin Press",
+            "options": [
+              "Seated Strict Press with barbell",
+              "Seated Dumbbell Strict Press"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b5",
+      "block_order": 5,
+      "block_type": "STRENGTH",
+      "title": "Dumbbell Push Press",
+      "parts": [
+        {
+          "part_id": "b5-p1",
+          "structure": "SETS",
+          "movements": [
+            {
+              "name": "Dumbbell Push Press",
+              "movement_key": "DB_PUSH_PRESS",
+              "reps": 25
+            }
+          ],
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 25,
+              "load": {
+                "rpe": {
+                  "min": 7.5,
+                  "max": 8
+                }
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              },
+              "notes": "Unbroken"
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Shoulder and triceps endurance with coordinated leg drive."
+      }
+    },
+    {
+      "block_id": "b6",
+      "block_order": 6,
+      "block_type": "ACCESSORY",
+      "title": "Strongman accessory",
+      "parts": [
+        {
+          "part_id": "b6-p1",
+          "structure": "ROUNDS",
+          "rounds": {
+            "min": 3,
+            "max": 4
+          },
+          "movements": [
+            {
+              "name": "Backward Sled Drag",
+              "movement_key": "BACKWARD_SLED_DRAG",
+              "distance": {
+                "value": 75,
+                "unit": "FT"
+              },
+              "load": {
+                "athlete_choice": true
+              }
+            },
+            {
+              "name": "Sandbag Bear Hug Carry",
+              "movement_key": "SANDBAG_BEAR_HUG_CARRY",
+              "distance": {
+                "value": 100,
+                "unit": "FT"
+              },
+              "load": {
+                "athlete_choice": true
+              }
+            },
+            {
+              "name": "Sled Drag",
+              "movement_key": "SLED_DRAG",
+              "distance": {
+                "value": 75,
+                "unit": "FT"
+              },
+              "load": {
+                "athlete_choice": true
+              }
+            },
+            {
+              "name": "Sandbag Clean",
+              "movement_key": "SANDBAG_CLEAN",
+              "reps": 3,
+              "load": {
+                "athlete_choice": true
+              }
+            }
+          ],
+          "rest_between_rounds": {
+            "as_needed": true
+          }
+        }
+      ],
+      "coaching": {
+        "intention": "Leg, posterior chain, grip and trunk strength with loaded carries. Not for time.",
+        "substitutions": [
+          {
+            "for": "Backward Sled Drag",
+            "options": [
+              "Backward walk with band resistance"
+            ]
+          },
+          {
+            "for": "Sled Drag",
+            "options": [
+              "Heavy Farmer Carry"
+            ]
+          },
+          {
+            "for": "Sandbag Clean",
+            "options": [
+              "Dumbbell Ground to Shoulder"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b7",
+      "block_order": 7,
+      "block_type": "WARM_UP",
+      "title": "Metcon specific warm-up",
+      "parts": [
+        {
+          "part_id": "b7-pA",
+          "structure": "TEXT",
+          "title": "Hinshaw run warm-up",
+          "lines": [
+            "10 m out, walk back: High Knee Karaoke, Over Hurdle, Knee to Chest, Figure 4 (1 s pause), Lunge with Reach Overhead, Lunge Torso Twist, Toy Soldiers, High Knee + Arm Swing, Butt Kick + Arm Swing, Straight Leg (Shallow Heel)",
+            "20 m out, walk back: Side Step, Side Step Jumping Jack",
+            "20 s Sitting Arm Swing, 20 s Standing Arm Swing",
+            "Foot mobility 10 m each: Toes Out, Toes In, Heels, Toes, Outside of Foot, Inside of Foot",
+            "Run progressions: 50 m Hash Marks; 30 m (20 accelerate + 10 decelerate); 45 m (35+10); 60 m (50+10)"
+          ],
+          "label": "A"
+        },
+        {
+          "part_id": "b7-pB",
+          "structure": "TEXT",
+          "title": "Specific activation",
+          "lines": [
+            "2-3 sets: 10 Hanging Scap Retractions, 10 Kip to Swing, 10 Alternating Leg V-Ups"
+          ],
+          "label": "B"
+        },
+        {
+          "part_id": "b7-pC",
+          "structure": "TEXT",
+          "title": "Workout prep",
+          "lines": [
+            "1 set at competition pace: 200 m Run, 3 GHD Sit-Ups, 3 Toes to Bar"
+          ],
+          "label": "C"
+        }
+      ]
+    },
+    {
+      "block_id": "b8",
+      "block_order": 8,
+      "block_type": "METCON",
+      "title": "Florida Atlantic Owls",
+      "parts": [
+        {
+          "part_id": "b8-p1",
+          "structure": "WOD",
+          "wod_format": "FOR_TIME",
+          "time_cap_seconds": 1080,
+          "targets": {
+            "target_time_seconds": {
+              "min": 720,
+              "max": 900
+            },
+            "rpe": {
+              "min": 8,
+              "max": 8.5
+            },
+            "intensity_percent": {
+              "min": 80,
+              "max": 85
+            }
+          },
+          "versions": {
+            "RX": {
+              "movements": [
+                {
+                  "name": "Run",
+                  "movement_key": "RUN",
+                  "distance": {
+                    "value": 800,
+                    "unit": "M"
+                  }
+                },
+                {
+                  "name": "GHD Sit-Up",
+                  "movement_key": "GHD_SIT_UP",
+                  "reps": 50
+                },
+                {
+                  "name": "Run",
+                  "movement_key": "RUN",
+                  "distance": {
+                    "value": 800,
+                    "unit": "M"
+                  }
+                },
+                {
+                  "name": "Toes to Bar",
+                  "movement_key": "TOES_TO_BAR",
+                  "reps": 50
+                }
+              ]
+            },
+            "SCALED": {
+              "movements": [
+                {
+                  "name": "Run",
+                  "movement_key": "RUN",
+                  "distance": {
+                    "value": 600,
+                    "unit": "M"
+                  }
+                },
+                {
+                  "name": "GHD Sit-Up",
+                  "movement_key": "GHD_SIT_UP",
+                  "reps": 35
+                },
+                {
+                  "name": "Run",
+                  "movement_key": "RUN",
+                  "distance": {
+                    "value": 600,
+                    "unit": "M"
+                  }
+                },
+                {
+                  "name": "Toes to Bar",
+                  "movement_key": "TOES_TO_BAR",
+                  "reps": 35
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "scored": true,
+      "coaching": {
+        "intention": "Cardio endurance combined with heavy abdominal and hip flexor demand.",
+        "strategy": [
+          {
+            "movement_key": "RUN",
+            "title": "Run",
+            "lines": [
+              "Moderate-fast steady pace, no sprint"
+            ]
+          },
+          {
+            "movement_key": "TOES_TO_BAR",
+            "title": "Toes to Bar",
+            "lines": [
+              "Wide efficient kip",
+              "Plan sets: 10-10-10-10-10 or 10-10-8-8-7-7"
+            ]
+          }
+        ],
+        "substitutions": [
+          {
+            "for": "Run",
+            "options": [
+              "Row or Bike with distance/calories adjusted"
+            ]
+          },
+          {
+            "for": "GHD Sit-Up",
+            "options": [
+              "AbMat sit-ups"
+            ]
+          },
+          {
+            "for": "Toes to Bar",
+            "options": [
+              "Hanging Knee Raises",
+              "Knees to Elbows"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b9",
+      "block_order": 9,
+      "block_type": "COOL_DOWN",
+      "title": "Cool down",
+      "parts": [
+        {
+          "part_id": "b9-p1",
+          "structure": "TEXT",
+          "title": "Recovery",
+          "lines": [
+            "3-5 min easy cardio",
+            "2 sets: 1:00 Forearm Smash, 1:00 Toe Touch Stretch"
+          ]
+        }
+      ]
+    }
+  ]
+}

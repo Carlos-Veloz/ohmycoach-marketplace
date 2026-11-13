@@ -1,0 +1,704 @@
+{
+  "workout_id": "w-fri2",
+  "program_id": "prog-advanced-1",
+  "date": "2026-10-30",
+  "status": "PUBLISHED",
+  "metadata": {
+    "title": "Friday - Snatch Balance, Snatch, Harvest Moon",
+    "estimated_duration_minutes": 120,
+    "intention": "Snatch strength and stability followed by high-intensity intervals.",
+    "track_label": "Competitors Track"
+  },
+  "blocks": [
+    {
+      "block_id": "b1",
+      "block_order": 1,
+      "block_type": "WARM_UP",
+      "title": "General warm-up",
+      "parts": [
+        {
+          "part_id": "b1-pA",
+          "structure": "TEXT",
+          "title": "GOWOD mobility",
+          "lines": [
+            "1:00 Active Pec Stretch",
+            "1:00 Pigeon Stretch"
+          ],
+          "optional": true,
+          "media_links": [
+            {
+              "type": "GOWOD",
+              "label": "GOWOD premium protocol",
+              "url": "https://premium.gowod.app"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pB",
+          "structure": "TEXT",
+          "title": "Banded 7s",
+          "lines": [
+            "7 reps of each movement"
+          ],
+          "label": "A",
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Banded 7s",
+              "url": "https://youtu.be/Gn0_1HAkEfE"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pC",
+          "structure": "TEXT",
+          "title": "Mayhem Hip Halo",
+          "lines": [
+            "10 side steps per side",
+            "10 forward/backward walk per side",
+            "10 glute bridges",
+            "10 single leg glute bridges per side",
+            "10 bird dogs per side",
+            "10 squats"
+          ],
+          "label": "B",
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Mayhem Hip Halo",
+              "url": "https://youtu.be/NfAbdabJ310"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pD",
+          "structure": "TEXT",
+          "title": "Barbell prep - Burgener Snatch",
+          "lines": [
+            "Down & Finish",
+            "Elbows High & Outside",
+            "Muscle Snatch",
+            "Snatch Lands (2\", 4\", 6\")",
+            "Snatch Drops",
+            "Snatch skill transfer: Snatch Grip Push Press, Overhead Squat, Heaving Snatch Balance, Drop Snatch, Snatch Balance",
+            "Prep complex: 3 High Hang Snatch, 3 Hang Snatch, 3 Snatch"
+          ],
+          "label": "C",
+          "notes": "3-5 reps each; empty bar or light load"
+        }
+      ]
+    },
+    {
+      "block_id": "b2",
+      "block_order": 2,
+      "block_type": "STRENGTH",
+      "title": "Snatch Balance",
+      "parts": [
+        {
+          "part_id": "b2-p1",
+          "structure": "SETS",
+          "percentage_reference": "SNATCH_BALANCE",
+          "movements": [
+            {
+              "name": "Snatch Balance",
+              "movement_key": "SNATCH_BALANCE"
+            }
+          ],
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.68
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.73
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.78
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.73
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.78
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.83
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.8
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.85
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.88
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.9
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.9
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            }
+          ],
+          "ramp_up": [
+            {
+              "load": {
+                "empty_bar": true
+              },
+              "reps": 5
+            },
+            {
+              "load": {
+                "percentage": 0.4
+              },
+              "reps": 3
+            },
+            {
+              "load": {
+                "percentage": 0.5
+              },
+              "reps": 2
+            },
+            {
+              "load": {
+                "percentage": 0.6
+              },
+              "reps": 1
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "High percentages to build confidence receiving the bar in a deep squat. Percentage drops recover speed before climbing.",
+        "form_cues": [
+          "Drop fast",
+          "Lock arms firmly",
+          "Control the bar"
+        ],
+        "strategy": [
+          {
+            "title": "Key",
+            "lines": [
+              "Do not sacrifice depth or stability for load"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b3",
+      "block_order": 3,
+      "block_type": "STRENGTH",
+      "title": "Snatch",
+      "parts": [
+        {
+          "part_id": "b3-p1",
+          "structure": "SETS",
+          "percentage_reference": "SQUAT_SNATCH",
+          "movements": [
+            {
+              "name": "Snatch",
+              "movement_key": "SQUAT_SNATCH"
+            }
+          ],
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.68
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.73
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.78
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.73
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.8
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.85
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.8
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.85
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.9
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.9
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 1,
+              "load": {
+                "percentage": 0.9
+              },
+              "rest": {
+                "min_seconds": 120,
+                "max_seconds": 120
+              }
+            }
+          ],
+          "ramp_up": [
+            {
+              "load": {
+                "percentage": 0.4
+              },
+              "reps": 3
+            },
+            {
+              "load": {
+                "percentage": 0.5
+              },
+              "reps": 2
+            },
+            {
+              "load": {
+                "percentage": 0.6
+              },
+              "reps": 1
+            }
+          ],
+          "notes": "Work around 90% or more only if technique and speed allow"
+        }
+      ],
+      "coaching": {
+        "intention": "Transfer the snatch balance stability to the full lift. Do not add load if a lift turns slow or uncontrolled.",
+        "intensity": {
+          "rpe": {
+            "min": 8,
+            "max": 9
+          },
+          "label": "Heavy sets"
+        }
+      }
+    },
+    {
+      "block_id": "b4",
+      "block_order": 4,
+      "block_type": "WARM_UP",
+      "title": "Metcon specific warm-up",
+      "parts": [
+        {
+          "part_id": "b4-pA",
+          "structure": "TEXT",
+          "title": "Activation",
+          "lines": [
+            "2-3 sets: 1:00 Row increasing pace, 5-10 Thrusters (45/35 lb), build to WOD weight"
+          ],
+          "label": "A"
+        },
+        {
+          "part_id": "b4-pB",
+          "structure": "TEXT",
+          "title": "Workout prep",
+          "lines": [
+            "1 set at competition pace: 3/2 cal Row, 3 Thrusters at WOD weight, 3 Overhead Squats at WOD weight"
+          ],
+          "label": "B"
+        }
+      ]
+    },
+    {
+      "block_id": "b5",
+      "block_order": 5,
+      "block_type": "METCON",
+      "title": "Harvest Moon",
+      "parts": [
+        {
+          "part_id": "b5-p1",
+          "structure": "WOD",
+          "wod_format": "INTERVALS",
+          "interval_time_cap_seconds": 90,
+          "targets": {
+            "per_interval_target_seconds": 75,
+            "rpe": 9
+          },
+          "versions": {
+            "RX": {
+              "rounds": 6,
+              "interval_seconds": 150,
+              "intervals": [
+                {
+                  "applies_to": {
+                    "pattern": "ODD"
+                  },
+                  "movements": [
+                    {
+                      "name": "Row",
+                      "movement_key": "ROW",
+                      "calories": {
+                        "men": {
+                          "value": 15,
+                          "unit": "CAL"
+                        },
+                        "women": {
+                          "value": 12,
+                          "unit": "CAL"
+                        }
+                      }
+                    },
+                    {
+                      "name": "Thruster",
+                      "movement_key": "THRUSTER",
+                      "reps": 15,
+                      "load": {
+                        "weight": {
+                          "men": {
+                            "value": 95,
+                            "unit": "LB"
+                          },
+                          "women": {
+                            "value": 65,
+                            "unit": "LB"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "applies_to": {
+                    "pattern": "EVEN"
+                  },
+                  "movements": [
+                    {
+                      "name": "Row",
+                      "movement_key": "ROW",
+                      "calories": {
+                        "men": {
+                          "value": 15,
+                          "unit": "CAL"
+                        },
+                        "women": {
+                          "value": 12,
+                          "unit": "CAL"
+                        }
+                      }
+                    },
+                    {
+                      "name": "Overhead Squat",
+                      "movement_key": "OVERHEAD_SQUAT",
+                      "reps": 15,
+                      "load": {
+                        "weight": {
+                          "men": {
+                            "value": 95,
+                            "unit": "LB"
+                          },
+                          "women": {
+                            "value": 65,
+                            "unit": "LB"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "SCALED": {
+              "rounds": 6,
+              "interval_seconds": 150,
+              "intervals": [
+                {
+                  "applies_to": {
+                    "pattern": "ODD"
+                  },
+                  "movements": [
+                    {
+                      "name": "Row",
+                      "movement_key": "ROW",
+                      "calories": {
+                        "men": {
+                          "value": 15,
+                          "unit": "CAL"
+                        },
+                        "women": {
+                          "value": 12,
+                          "unit": "CAL"
+                        }
+                      }
+                    },
+                    {
+                      "name": "Thruster",
+                      "movement_key": "THRUSTER",
+                      "reps": 15,
+                      "load": {
+                        "weight": {
+                          "men": {
+                            "value": 75,
+                            "unit": "LB"
+                          },
+                          "women": {
+                            "value": 55,
+                            "unit": "LB"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "applies_to": {
+                    "pattern": "EVEN"
+                  },
+                  "movements": [
+                    {
+                      "name": "Row",
+                      "movement_key": "ROW",
+                      "calories": {
+                        "men": {
+                          "value": 15,
+                          "unit": "CAL"
+                        },
+                        "women": {
+                          "value": 12,
+                          "unit": "CAL"
+                        }
+                      }
+                    },
+                    {
+                      "name": "Overhead Squat",
+                      "movement_key": "OVERHEAD_SQUAT",
+                      "reps": 15,
+                      "load": {
+                        "weight": {
+                          "men": {
+                            "value": 75,
+                            "unit": "LB"
+                          },
+                          "women": {
+                            "value": 55,
+                            "unit": "LB"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "scored": false,
+      "coaching": {
+        "intention": "Very intense intervals; start strong and keep the six sets as even as possible. Score is the sum of effective work time across the 6 sets.",
+        "strategy": [
+          {
+            "movement_key": "ROW",
+            "title": "Row",
+            "lines": [
+              "Start around RPE 9",
+              "Transition immediately to the bar"
+            ]
+          },
+          {
+            "movement_key": "THRUSTER",
+            "title": "Thrusters",
+            "lines": [
+              "Aim for 15 unbroken"
+            ]
+          },
+          {
+            "movement_key": "OVERHEAD_SQUAT",
+            "title": "Overhead Squats",
+            "lines": [
+              "Stable overhead, full depth"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b6",
+      "block_order": 6,
+      "block_type": "COOL_DOWN",
+      "title": "Cool down",
+      "parts": [
+        {
+          "part_id": "b6-p1",
+          "structure": "TEXT",
+          "title": "Recovery",
+          "lines": [
+            "3-5 min easy cardio",
+            "2 sets: 1:00 Seal Stretch, 1:00 Bench Stretch for Lats"
+          ]
+        }
+      ]
+    }
+  ]
+}

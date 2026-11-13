@@ -1,0 +1,232 @@
+[
+  {
+    "movement_key": "AIR_BIKE",
+    "name": "Air Bike",
+    "pr_family": null
+  },
+  {
+    "movement_key": "BACKWARD_SLED_DRAG",
+    "name": "Backward Sled Drag",
+    "pr_family": null
+  },
+  {
+    "movement_key": "BACK_SQUAT",
+    "name": "Back Squat",
+    "pr_family": "BACK_SQUAT"
+  },
+  {
+    "movement_key": "BOX_STEP_UP",
+    "name": "Box Step-Up",
+    "pr_family": null
+  },
+  {
+    "movement_key": "BURPEE_BAR_MUSCLE_UP",
+    "name": "Burpee Bar Muscle-Up",
+    "pr_family": null
+  },
+  {
+    "movement_key": "BURPEE_TO_BAR",
+    "name": "Burpee to Bar",
+    "pr_family": null
+  },
+  {
+    "movement_key": "BURPEE_TO_TARGET",
+    "name": "Burpee to Target",
+    "pr_family": null
+  },
+  {
+    "movement_key": "CHEST_SUPPORTED_ROW",
+    "name": "Chest Supported Row",
+    "pr_family": null
+  },
+  {
+    "movement_key": "CLEAN_PULL",
+    "name": "Clean Pull",
+    "pr_family": "SQUAT_CLEAN"
+  },
+  {
+    "movement_key": "DB_PUSH_PRESS",
+    "name": "Dumbbell Push Press",
+    "pr_family": null
+  },
+  {
+    "movement_key": "DB_SNATCH",
+    "name": "Dumbbell Snatch",
+    "pr_family": null
+  },
+  {
+    "movement_key": "DEADLIFT",
+    "name": "Deadlift",
+    "pr_family": "DEADLIFT"
+  },
+  {
+    "movement_key": "DOUBLE_UNDER",
+    "name": "Double Under",
+    "pr_family": null
+  },
+  {
+    "movement_key": "FLOATING_POWER_CLEAN",
+    "name": "Floating Power Clean",
+    "pr_family": "POWER_CLEAN"
+  },
+  {
+    "movement_key": "FRONT_RACK_CARRY",
+    "name": "Front Rack Carry",
+    "pr_family": null
+  },
+  {
+    "movement_key": "FRONT_SQUAT",
+    "name": "Front Squat",
+    "pr_family": "FRONT_SQUAT"
+  },
+  {
+    "movement_key": "GHD_SIT_UP",
+    "name": "GHD Sit-Up",
+    "pr_family": null
+  },
+  {
+    "movement_key": "HANG_MUSCLE_CLEAN",
+    "name": "Hang Muscle Clean",
+    "pr_family": "POWER_CLEAN"
+  },
+  {
+    "movement_key": "HANG_POWER_CLEAN",
+    "name": "Hang Power Clean",
+    "pr_family": "POWER_CLEAN"
+  },
+  {
+    "movement_key": "HANG_SQUAT_CLEAN",
+    "name": "Hang Squat Clean",
+    "pr_family": "SQUAT_CLEAN"
+  },
+  {
+    "movement_key": "HIGH_HANG_POWER_CLEAN",
+    "name": "High Hang Power Clean",
+    "pr_family": "POWER_CLEAN"
+  },
+  {
+    "movement_key": "KB_SUITCASE_HOLD",
+    "name": "Kettlebell Suitcase Hold",
+    "pr_family": null
+  },
+  {
+    "movement_key": "MED_BALL_GHD_SIT_UP",
+    "name": "Med Ball GHD Sit-Up",
+    "pr_family": null
+  },
+  {
+    "movement_key": "MUSCLE_CLEAN",
+    "name": "Muscle Clean",
+    "pr_family": "POWER_CLEAN"
+  },
+  {
+    "movement_key": "OVERHEAD_SQUAT",
+    "name": "Overhead Squat",
+    "pr_family": "OVERHEAD_SQUAT"
+  },
+  {
+    "movement_key": "POWER_CLEAN",
+    "name": "Power Clean",
+    "pr_family": "POWER_CLEAN"
+  },
+  {
+    "movement_key": "POWER_SNATCH",
+    "name": "Power Snatch",
+    "pr_family": "POWER_SNATCH"
+  },
+  {
+    "movement_key": "ROW",
+    "name": "Row",
+    "pr_family": null
+  },
+  {
+    "movement_key": "ROWER_HAMSTRING_CURL",
+    "name": "Rower Hamstring Curl",
+    "pr_family": null
+  },
+  {
+    "movement_key": "RUN",
+    "name": "Run",
+    "pr_family": null
+  },
+  {
+    "movement_key": "SANDBAG_BEAR_HUG_CARRY",
+    "name": "Sandbag Bear Hug Carry",
+    "pr_family": null
+  },
+  {
+    "movement_key": "SANDBAG_CLEAN",
+    "name": "Sandbag Clean",
+    "pr_family": null
+  },
+  {
+    "movement_key": "SEATED_STRICT_PIN_PRESS",
+    "name": "Seated Strict Pin Press",
+    "pr_family": "OVERHEAD_STRICT_PRESS"
+  },
+  {
+    "movement_key": "SINGLE_ARM_DB_BENT_OVER_ROW",
+    "name": "Single Arm Dumbbell Bent Over Row",
+    "pr_family": null
+  },
+  {
+    "movement_key": "SINGLE_LEG_RDL",
+    "name": "Single Leg Romanian Deadlift",
+    "pr_family": null
+  },
+  {
+    "movement_key": "SINGLE_UNDER_360",
+    "name": "360 Degree Single Under",
+    "pr_family": null
+  },
+  {
+    "movement_key": "SLED_DRAG",
+    "name": "Sled Drag",
+    "pr_family": null
+  },
+  {
+    "movement_key": "SNATCH_BALANCE",
+    "name": "Snatch Balance",
+    "pr_family": "SNATCH_BALANCE"
+  },
+  {
+    "movement_key": "SQUAT_SNATCH",
+    "name": "Snatch",
+    "pr_family": "SQUAT_SNATCH"
+  },
+  {
+    "movement_key": "STRICT_DEFICIT_HSPU",
+    "name": "Strict Deficit HSPU",
+    "pr_family": null
+  },
+  {
+    "movement_key": "STRICT_HSPU",
+    "name": "Strict Handstand Push-Up",
+    "pr_family": null
+  },
+  {
+    "movement_key": "THRUSTER",
+    "name": "Thruster",
+    "pr_family": null
+  },
+  {
+    "movement_key": "TOES_TO_BAR",
+    "name": "Toes to Bar",
+    "pr_family": null
+  },
+  {
+    "movement_key": "TURKISH_GET_UP",
+    "name": "Turkish Get-Up",
+    "pr_family": null
+  },
+  {
+    "movement_key": "V_UP",
+    "name": "V-Up",
+    "pr_family": null
+  },
+  {
+    "movement_key": "WALL_BALL",
+    "name": "Wall Ball",
+    "pr_family": null
+  }
+]

@@ -1,0 +1,511 @@
+{
+  "workout_id": "w-mon",
+  "program_id": "prog-advanced-1",
+  "date": "2026-11-02",
+  "status": "PUBLISHED",
+  "metadata": {
+    "title": "Monday - Front Squat, Pull-Up Strength, Snatch/BMU",
+    "estimated_duration_minutes": 120,
+    "intention": "Leg strength, pulling capacity, core stability and olympic power.",
+    "closing_note": "STRONGER EVERY DAY"
+  },
+  "blocks": [
+    {
+      "block_id": "b1",
+      "block_order": 1,
+      "block_type": "WARM_UP",
+      "title": "General warm-up",
+      "parts": [
+        {
+          "part_id": "b1-pA",
+          "structure": "TEXT",
+          "title": "GOWOD mobility",
+          "lines": [
+            "1:00 Good Morning",
+            "1:00 Shoulders Global"
+          ],
+          "label": "A",
+          "optional": true,
+          "media_links": [
+            {
+              "type": "GOWOD",
+              "label": "GOWOD premium protocol",
+              "url": "https://premium.gowod.app"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pB",
+          "structure": "TEXT",
+          "title": "Crossover Symmetry / Banded 7s",
+          "lines": [
+            "7 reps of each movement"
+          ],
+          "label": "B",
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Banded 7s",
+              "url": "https://youtu.be/Gn0_1HAkEfE"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pC",
+          "structure": "TEXT",
+          "title": "Mayhem Hip Halo",
+          "lines": [
+            "10 side steps per side",
+            "10 forward/backward walk per side",
+            "10 glute bridges",
+            "10 single leg glute bridges per side",
+            "10 bird dogs per side",
+            "10 squats"
+          ],
+          "label": "C",
+          "media_links": [
+            {
+              "type": "YOUTUBE",
+              "label": "Mayhem Hip Halo",
+              "url": "https://youtu.be/NfAbdabJ310"
+            }
+          ]
+        },
+        {
+          "part_id": "b1-pD",
+          "structure": "TEXT",
+          "title": "Barbell prep - Front Squat",
+          "lines": [
+            "No Hands Front Squat (Zombie Squat)",
+            "Front Squat",
+            "Pause Front Squat",
+            "1-1/4 Front Squat",
+            "In the Hole Front Squat with 10 s eccentric on the last rep"
+          ],
+          "label": "D",
+          "notes": "3-5 reps each; empty bar or light load"
+        }
+      ],
+      "coaching": {
+        "intention": "Wake up glutes, hips and stabilizers to hold position in the squats."
+      }
+    },
+    {
+      "block_id": "b2",
+      "block_order": 2,
+      "block_type": "STRENGTH",
+      "title": "Front Squat",
+      "parts": [
+        {
+          "part_id": "b2-p1",
+          "structure": "SETS",
+          "percentage_reference": "FRONT_SQUAT",
+          "movements": [
+            {
+              "name": "Front Squat",
+              "movement_key": "FRONT_SQUAT"
+            }
+          ],
+          "sets": [
+            {
+              "sets": 10,
+              "reps": 3,
+              "load": {
+                "percentage_min": 0.78,
+                "percentage_max": 0.83
+              },
+              "rest": {
+                "as_needed": true
+              }
+            }
+          ],
+          "ramp_up": [
+            {
+              "load": {
+                "percentage": 0.4
+              },
+              "reps": 5
+            },
+            {
+              "load": {
+                "percentage": 0.55
+              },
+              "reps": 4
+            },
+            {
+              "load": {
+                "percentage": 0.65
+              },
+              "reps": 3
+            },
+            {
+              "load": {
+                "percentage": 0.72
+              },
+              "reps": 2
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Build quad, glute and core strength under front-loaded positions. Cycle target: +3-4% intensity per week.",
+        "form_cues": [
+          "High elbows",
+          "Vertical torso",
+          "Controlled descent",
+          "Full range",
+          "Explosive ascent"
+        ],
+        "intensity": {
+          "label": "Moderate-high, no failure"
+        }
+      }
+    },
+    {
+      "block_id": "b3",
+      "block_order": 3,
+      "block_type": "STRENGTH",
+      "title": "Weighted Strict Pull-Up",
+      "parts": [
+        {
+          "part_id": "b3-pA",
+          "structure": "TEXT",
+          "title": "Find a 3RM",
+          "lines": [
+            "10 minutes",
+            "Minimum 5 progressive sets to find the heaviest added load for 3 strict pull-ups",
+            "Ramp-up: 5 bodyweight, 3 light, 3 moderate, 2-3 heavier, continue to the day's 3RM"
+          ],
+          "label": "A"
+        },
+        {
+          "part_id": "b3-pB",
+          "structure": "TEXT",
+          "title": "Strength endurance",
+          "lines": [
+            "2 sets of max reps",
+            "Load: 20% of the added weight used for the 3RM in Part A",
+            "Example: 50 lb 3RM -> 10 lb for max reps sets"
+          ],
+          "label": "B"
+        }
+      ],
+      "coaching": {
+        "intention": "Develop maximal pulling strength, then test reps with a lighter load.",
+        "form_cues": [
+          "Start from dead hang",
+          "Abs and glutes active",
+          "Chin clearly over the bar",
+          "No hip kipping"
+        ],
+        "substitutions": [
+          {
+            "for": "Weighted Strict Pull-Up",
+            "options": [
+              "Strict pull-ups without weight",
+              "Banded pull-ups"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b4",
+      "block_order": 4,
+      "block_type": "ACCESSORY",
+      "title": "Back accessories",
+      "parts": [
+        {
+          "part_id": "b4-p1",
+          "structure": "ROUNDS",
+          "rounds": {
+            "min": 4,
+            "max": 5
+          },
+          "movements": [
+            {
+              "name": "Chest Supported Row",
+              "movement_key": "CHEST_SUPPORTED_ROW",
+              "reps": 10,
+              "load": {
+                "athlete_choice": true
+              }
+            },
+            {
+              "name": "Single Arm Dumbbell Bent Over Row",
+              "movement_key": "SINGLE_ARM_DB_BENT_OVER_ROW",
+              "reps": 14,
+              "load": {
+                "athlete_choice": true
+              }
+            }
+          ]
+        }
+      ],
+      "coaching": {
+        "intention": "Strengthen lats, rhomboids and back stabilizers.",
+        "substitutions": [
+          {
+            "for": "Chest Supported Row",
+            "options": [
+              "Dumbbell row on incline bench"
+            ]
+          },
+          {
+            "for": "Single Arm DB Row",
+            "options": [
+              "Single arm kettlebell row"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b5",
+      "block_order": 5,
+      "block_type": "ACCESSORY",
+      "title": "Core work",
+      "parts": [
+        {
+          "part_id": "b5-p1",
+          "structure": "ROUNDS",
+          "rounds": 2,
+          "movements": [
+            {
+              "name": "Med Ball GHD Sit-Up",
+              "movement_key": "MED_BALL_GHD_SIT_UP",
+              "reps": {
+                "min": 10,
+                "max": 15
+              }
+            },
+            {
+              "name": "Kettlebell Suitcase Hold",
+              "movement_key": "KB_SUITCASE_HOLD",
+              "duration_seconds": 90,
+              "per_side": false,
+              "notes": "45 s per side, heavy kettlebell"
+            },
+            {
+              "name": "V-Up",
+              "movement_key": "V_UP",
+              "reps": 25
+            }
+          ]
+        }
+      ],
+      "optional": true,
+      "coaching": {
+        "intention": "Midline strength, abdominal endurance and unilateral stability.",
+        "substitutions": [
+          {
+            "for": "Med Ball GHD Sit-Up",
+            "options": [
+              "GHD sit-up without ball",
+              "AbMat sit-up"
+            ]
+          },
+          {
+            "for": "V-Up",
+            "options": [
+              "Tuck-up"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b6",
+      "block_order": 6,
+      "block_type": "WARM_UP",
+      "title": "Metcon specific warm-up",
+      "parts": [
+        {
+          "part_id": "b6-pA",
+          "structure": "TEXT",
+          "title": "Cardio activation",
+          "lines": [
+            "3:00 SkiErg or Row, increasing pace",
+            "At the start of each minute: 15 s arms only"
+          ],
+          "label": "A"
+        },
+        {
+          "part_id": "b6-pB",
+          "structure": "TEXT",
+          "title": "Burgener warm-up - Snatch",
+          "lines": [
+            "Down & Finish",
+            "Elbows High & Outside",
+            "Muscle Snatch",
+            "Snatch Lands (2\", 4\", 6\")",
+            "Snatch Drops"
+          ],
+          "label": "B",
+          "notes": "3-5 reps each"
+        },
+        {
+          "part_id": "b6-pC",
+          "structure": "TEXT",
+          "title": "Competition weight prep",
+          "lines": [
+            "Build Power Snatch up to WOD weight",
+            "After each increase: 1 Burpee Bar Muscle-Up"
+          ],
+          "label": "C"
+        },
+        {
+          "part_id": "b6-pD",
+          "structure": "TEXT",
+          "title": "Rehearsal at competition pace",
+          "lines": [
+            "1 round: 2 Power Snatches at WOD weight + 2 Burpee Bar Muscle-Ups"
+          ],
+          "label": "D"
+        }
+      ]
+    },
+    {
+      "block_id": "b7",
+      "block_order": 7,
+      "block_type": "METCON",
+      "title": "Army Black Knights",
+      "parts": [
+        {
+          "part_id": "b7-p1",
+          "structure": "WOD",
+          "wod_format": "FOR_TIME",
+          "time_cap_seconds": 540,
+          "targets": {
+            "target_time_seconds": 360,
+            "rpe": {
+              "min": 8.5,
+              "max": 9
+            }
+          },
+          "versions": {
+            "RX": {
+              "movements": [
+                {
+                  "name": "Power Snatch",
+                  "movement_key": "POWER_SNATCH",
+                  "reps_by_round": [
+                    9,
+                    7,
+                    5
+                  ],
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 135,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 95,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Burpee Bar Muscle-Up",
+                  "movement_key": "BURPEE_BAR_MUSCLE_UP",
+                  "reps_by_round": [
+                    9,
+                    7,
+                    5
+                  ]
+                }
+              ],
+              "rounds": 3
+            },
+            "SCALED": {
+              "movements": [
+                {
+                  "name": "Power Snatch",
+                  "movement_key": "POWER_SNATCH",
+                  "reps_by_round": [
+                    9,
+                    7,
+                    5
+                  ],
+                  "load": {
+                    "weight": {
+                      "men": {
+                        "value": 115,
+                        "unit": "LB"
+                      },
+                      "women": {
+                        "value": 80,
+                        "unit": "LB"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Burpee Bar Muscle-Up",
+                  "movement_key": "BURPEE_BAR_MUSCLE_UP",
+                  "reps_by_round": [
+                    7,
+                    5,
+                    3
+                  ]
+                }
+              ],
+              "rounds": 3
+            }
+          }
+        }
+      ],
+      "scored": true,
+      "coaching": {
+        "intention": "Short explosive effort; feels like Fran with higher technical demand.",
+        "strategy": [
+          {
+            "movement_key": "POWER_SNATCH",
+            "title": "Power Snatch",
+            "lines": [
+              "Touch-and-go if technique holds",
+              "Otherwise fast singles",
+              "Bar close, powerful hip extension"
+            ]
+          },
+          {
+            "movement_key": "BURPEE_BAR_MUSCLE_UP",
+            "title": "Burpee Bar Muscle-Up",
+            "lines": [
+              "Quick controlled transitions",
+              "Rehearse hand and foot placement"
+            ]
+          }
+        ],
+        "substitutions": [
+          {
+            "for": "Burpee Bar Muscle-Up",
+            "options": [
+              "Burpee + Jumping Chest-to-Bar",
+              "Burpee + Pull-Up"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b8",
+      "block_order": 8,
+      "block_type": "COOL_DOWN",
+      "title": "Cool down",
+      "parts": [
+        {
+          "part_id": "b8-p1",
+          "structure": "TEXT",
+          "title": "Recovery",
+          "lines": [
+            "3-5 min easy cardio",
+            "2 rounds: 1:00 Band Bicep Stretch, 1:00 Seal Stretch"
+          ]
+        }
+      ]
+    }
+  ]
+}
